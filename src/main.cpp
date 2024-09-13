@@ -232,12 +232,12 @@ Zeroing(true,true);
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)//Quali close 6 triball auto 
 {
-  test();
+  // test();
 }
 
 if(AutoSelectorVal==2)// awp mid steal
 {
-  test2();
+  // test2();
 
 }
 
@@ -283,8 +283,8 @@ int DriveTask(void){
   while(true)
   {
     EXIT=true;
-    RV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
-    LV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
+    RV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
+    LV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
     Move(LV,RV);
   }
 
@@ -318,7 +318,8 @@ int PTask(void)
     {
       ButtonPressingX=1;
       XTaskActiv=1;
-      Tilt.set(true);
+      Clamp.set(true);
+      Clamp2.set(true);
     }
 
     else if(!Controller1.ButtonX.pressing())ButtonPressingX=0;
@@ -327,25 +328,26 @@ int PTask(void)
     {
       ButtonPressingX=1;
       XTaskActiv=0;
-      Tilt.set(false);
+      Clamp.set(false);
+      Clamp2.set(false);
     }
     //----------------------
       //Toggles Clamp
-    if(YTaskActiv==0&&Controller1.ButtonY.pressing()&&ButtonPressingY==0)
-    {
-      ButtonPressingY=1;
-      YTaskActiv=1;
-      Clamp.set(true);
-    }
+    // if(YTaskActiv==0&&Controller1.ButtonY.pressing()&&ButtonPressingY==0)
+    // {
+    //   ButtonPressingY=1;
+    //   YTaskActiv=1;
+    //   Clamp.set(true);
+    // }
 
-    else if(!Controller1.ButtonY.pressing())ButtonPressingY=0;
+    // else if(!Controller1.ButtonY.pressing())ButtonPressingY=0;
 
-    else if(YTaskActiv==1&&Controller1.ButtonY.pressing()&&ButtonPressingY==0)
-    {
-      ButtonPressingY=1;
-      YTaskActiv=0;
-      Clamp.set(false);
-    }
+    // else if(YTaskActiv==1&&Controller1.ButtonY.pressing()&&ButtonPressingY==0)
+    // {
+    //   ButtonPressingY=1;
+    //   YTaskActiv=0;
+    //   Clamp.set(false);
+    // }
 
 
 
