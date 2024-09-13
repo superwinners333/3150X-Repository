@@ -285,7 +285,7 @@ int DriveTask(void){
     EXIT=true;
     RV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
     LV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
-    Move(LV,RV);
+    Move(LV,RV); 
   }
 
 return 0;
