@@ -20,7 +20,7 @@ digital_out Pistake = digital_out(Brain.ThreeWirePort.D);
 digital_out Tilt = digital_out(Brain.ThreeWirePort.C);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
 digital_out Clamp2 = digital_out(Brain.ThreeWirePort.B);
-inertial Gyro = inertial(PORT2);
+inertial Gyro = inertial(PORT6);
 //Naming convention: 
 // Important variables
 const double wheelDiam = 3.25;

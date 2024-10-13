@@ -243,7 +243,7 @@ if(AutoSelectorVal==2)// awp mid steal
 
 if(AutoSelectorVal==3)// 5 Ball rush
 {
-  
+  basic();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal
