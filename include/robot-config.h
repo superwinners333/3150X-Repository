@@ -11,13 +11,11 @@ extern motor RM;
 extern motor LB;
 extern motor RB;
 extern motor Roller;
-extern digital_out Tilt;
+extern digital_out Doinker;
 extern digital_out Clamp;
-extern digital_out RightBackWing;
 extern digital_out Pistake;
 extern motor PU;
 extern inertial Gyro;
-extern digital_out LeftBackWing;
 extern digital_out Clamp2;
 
 extern const double wheelDiam;
