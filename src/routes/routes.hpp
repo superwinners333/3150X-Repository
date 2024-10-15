@@ -8,4 +8,5 @@
 extern void test();
 extern void test2();
 extern void basic();
+extern void winpoint_red_positive();
 #endif

@@ -36,8 +36,9 @@ bool SP;
 bool EXIT;
 void pre_auton(void) {
    EXIT=false;
-  Tilt.set(true);
-  Clamp.set(true);
+  Doinker.set(false);
+  Clamp.set(false);
+  Clamp2.set(false);
   PX=0;
   JX=0;
   AutoSelectorVal=0;
@@ -103,9 +104,9 @@ if(AutoSelectorVal==1){
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("GOAL SIDE");
+Brain.Screen.print("Red Negative");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("6 BALL");
+Brain.Screen.print("RED- AWP");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 
@@ -131,9 +132,9 @@ Brain.Screen.setFillColor(black);
     Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("GOAL SIDE");
+Brain.Screen.print("Backwards to Mogo");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("5 BALL");
+Brain.Screen.print("BASIC");
 Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
 }
@@ -159,9 +160,9 @@ Brain.Screen.setFillColor(black);
     Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("GOAL SIDE");
+Brain.Screen.print("Red Positive");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("GS-AWP");
+Brain.Screen.print("RED+ AWP");
 Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 

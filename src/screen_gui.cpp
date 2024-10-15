@@ -41,13 +41,13 @@ void DisplayWords(void)
   Brain.Screen.setPenColor("#39FF14");
   Brain.Screen.setFont(monoM);
   Brain.Screen.setCursor(3,3);
-  Brain.Screen.print("6 Ball");
+  Brain.Screen.print("RED- AWP");
 
   Brain.Screen.setCursor(7,3);
   Brain.Screen.print("Basic");
 
     Brain.Screen.setCursor(11,3);
-  Brain.Screen.print("GS-AWP");
+  Brain.Screen.print("RED+ AWP");
 
     Brain.Screen.setCursor(3,40);
   Brain.Screen.print("StealAWP");
@@ -84,15 +84,15 @@ Brain.Screen.setPenColor(black);
 if(AutoSelectorVal==1){
 Brain.Screen.drawRectangle(1,25,100,50);
   Brain.Screen.setCursor(3,3);
-  Brain.Screen.print("6 Ball");
+  Brain.Screen.print("RED- AWP");
 
 Brain.Screen.setFillColor(black);
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("GOAL SIDE");
+Brain.Screen.print("Red Negative");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("6 BALL");
+Brain.Screen.print("RED- AWP");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 
@@ -153,15 +153,15 @@ Brain.Screen.setFont(monoM);
 if(AutoSelectorVal==5){
   Brain.Screen.drawRectangle(1,175,100,50);
       Brain.Screen.setCursor(11,3);
-  Brain.Screen.print("GS-AWP");
+  Brain.Screen.print("RED+ AWP");
 
 Brain.Screen.setFillColor(black);
     Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("GOAL SIDE");
+Brain.Screen.print("Red Positive");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("GS-AWP");
+Brain.Screen.print("RED+ AWP");
 Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 
