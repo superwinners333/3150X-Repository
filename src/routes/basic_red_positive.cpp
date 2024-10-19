@@ -9,16 +9,16 @@
 void basic_red_positive() 
 {
     PIDDataSet TestPara={1.5,0.1,0.15};
-    MoveEncoderPID(TestPara, 10, -25, 0.4,0,true); // move backwards into mogo
+    MoveEncoderPID(TestPara, 100, -25, 0.4,0,true); // move backwards into mogo
     wait(250,msec);
     Clamp.set(true); // clamp onto mogo
     wait(250,msec);
-    MoveEncoderPID(TestPara, 10, -8, 0.4,0,true); // move back a bit more to align with ring after rotating
+    MoveEncoderPID(TestPara, 100, -8, 0.4,0,true); // move back a bit more to align with ring after rotating
     wait(250,msec);
     TurnMaxTimePID(TestPara, 90, 0.9, true); // rotate
     RunRoller(-100); // put ring into mogo and prep for next ring
     wait(250,msec);
-    MoveEncoderPID(TestPara, 10, 41, 0.4,0,true); // pick up ring and ram into wall
+    MoveEncoderPID(TestPara, 100, 41, 0.4,0,true); // pick up ring and ram into wall
     MoveEncoderPID(TestPara, 10, -5, 0.4,0,true); // move back from wall to prepare for turning
     wait(250,msec);
     RunRoller(0);

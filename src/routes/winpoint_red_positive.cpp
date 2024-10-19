@@ -10,6 +10,6 @@ void winpoint_red_positive()
 {
     PIDDataSet TestPara={1.5,0.1,0.15};
     MoveEncoderPID(TestPara, 10, -25 , 0.4,0,true);
-    wait(1,sec);
-    Clamp.set(true);
+    wait(250,msec);
+    TurnMaxTimePID(TestPara, 9, 0.9, true);
 }
