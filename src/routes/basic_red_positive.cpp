@@ -12,7 +12,6 @@ void basic_red_positive()
     MoveEncoderPID(TestPara, 10, -25, 0.4,0,true); // move backwards into mogo
     wait(250,msec);
     Clamp.set(true); // clamp onto mogo
-    Clamp2.set(true);
     wait(250,msec);
     MoveEncoderPID(TestPara, 10, -8, 0.4,0,true); // move back a bit more to align with ring after rotating
     wait(250,msec);
@@ -38,7 +37,6 @@ void basic_red_positive()
     MoveEncoderPID(TestPara, 10, -12, 0.4,0,true); // drive backwards into corner
     wait(250,msec);
     Clamp.set(false); // drop mogo in corner
-    Clamp2.set(false);
     wait(250,msec);
     TurnMaxTimePID(TestPara, -15, 0.9, true); // rotate to face ladder
     wait(250,msec);

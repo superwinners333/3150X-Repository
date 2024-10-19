@@ -12,5 +12,4 @@ void winpoint_red_positive()
     MoveEncoderPID(TestPara, 10, -25 , 0.4,0,true);
     wait(1,sec);
     Clamp.set(true);
-    Clamp2.set(true);
 }

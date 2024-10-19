@@ -38,7 +38,6 @@ void pre_auton(void) {
    EXIT=false;
   Doinker.set(false);
   Clamp.set(false);
-  Clamp2.set(false);
   PX=0;
   JX=0;
   AutoSelectorVal=0;
@@ -320,7 +319,6 @@ int PTask(void)
       ButtonPressingX=1;
       XTaskActiv=1;
       Clamp.set(true);
-      Clamp2.set(true);
     }
 
     else if(!Controller1.ButtonX.pressing())ButtonPressingX=0;
@@ -330,7 +328,6 @@ int PTask(void)
       ButtonPressingX=1;
       XTaskActiv=0;
       Clamp.set(false);
-      Clamp2.set(false);
     }
     //----------------------
       // Toggles Doinker

@@ -23,13 +23,12 @@ void winpoint_red_negative()
     MoveEncoderPID(TestPara, 10, -34 , 0.4,0,true); // move to mogo
     wait(250,msec);
     Clamp.set(true); // clamp on mogo
-    Clamp2.set(true);
     wait(250,msec);
     MoveEncoderPID(TestPara, 10, -9 , 0.4,0,true); // move back 
-    wait(250,msec)
+    wait(250,msec);
     TurnMaxTimePID(TestPara, 135, 0.9, true); // rotate to face ring
     RunRoller(-100); // run intake to prepare for intaking ring
-    wait(250,msec)
+    wait(250,msec);
     MoveEncoderPID(TestPara, 10, 24 , 0.4,0,true); // move forward to ring
 
 

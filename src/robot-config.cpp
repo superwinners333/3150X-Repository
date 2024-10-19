@@ -17,9 +17,8 @@ motor LB = motor(PORT18, ratio6_1, false);
 motor RB = motor(PORT7, ratio6_1, true);
 motor Roller = motor(PORT16, ratio6_1, true);
 digital_out Pistake = digital_out(Brain.ThreeWirePort.D);
-digital_out Doinker = digital_out(Brain.ThreeWirePort.C);
+digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
-digital_out Clamp2 = digital_out(Brain.ThreeWirePort.B);
 inertial Gyro = inertial(PORT6);
 //Naming convention: 
 // Important variables
