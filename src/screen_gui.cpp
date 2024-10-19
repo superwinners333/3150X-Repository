@@ -118,16 +118,16 @@ Brain.Screen.setFont(monoM);
 if(AutoSelectorVal==3){
   Brain.Screen.drawRectangle(1,100,100,50);
   Brain.Screen.setCursor(7,3);
-  Brain.Screen.print("Basic");
+  Brain.Screen.print("Basic Red+");
 
 Brain.Screen.setFillColor(black);
 
     Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("BASIC");
+Brain.Screen.print("Basic Red+");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("MOVE BACKWARDS");
+Brain.Screen.print("Red Positive");
 Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
 }

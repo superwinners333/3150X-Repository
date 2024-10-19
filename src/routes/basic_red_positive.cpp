@@ -6,7 +6,7 @@
 // TurnMaxTimePID(TestPara, Desired Heading -180 to 180, time out to calculate turn, Braking?)
 // MoveTimePID(TestPara, motor speed, time traveled (sec), time to full speed, heading, false);
 
-void basic() 
+void basic_red_positive() 
 {
     PIDDataSet TestPara={1.5,0.1,0.15};
     MoveEncoderPID(TestPara, 10, -25, 0.4,0,true); // move backwards into mogo

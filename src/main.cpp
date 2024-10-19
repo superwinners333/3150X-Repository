@@ -132,9 +132,9 @@ Brain.Screen.setFillColor(black);
     Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("Backwards to Mogo");
+Brain.Screen.print("Red Positive");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("BASIC");
+Brain.Screen.print("Basic Red+");
 Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
 }
@@ -242,9 +242,9 @@ if(AutoSelectorVal==2)// awp mid steal
 
 }
 
-if(AutoSelectorVal==3)// 5 Ball rush
+if(AutoSelectorVal==3)// Basic Red Positive Corner
 {
-  basic();
+  basic_red_positive();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal
@@ -255,7 +255,7 @@ if(AutoSelectorVal==4)// Elim-Steal
 
 if(AutoSelectorVal==5)// empty
 {
-   //test();
+   winpoint_red_positive();
 }
 
 
