@@ -11,6 +11,7 @@ extern motor RM;
 extern motor LB;
 extern motor RB;
 extern motor Roller;
+extern motor Roller2;
 extern digital_out Doinker;
 extern digital_out Clamp;
 extern digital_out Pistake;

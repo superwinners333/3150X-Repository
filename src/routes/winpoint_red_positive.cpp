@@ -9,7 +9,7 @@
 void winpoint_red_positive() 
 {
     PIDDataSet TestPara={1.5,0.1,0.15};
-    MoveEncoderPID(TestPara, 100, -15, 0.4, 0,true);
+    MoveEncoderPID(TestPara, 100, -1, 0.4, 0,true);
     MoveEncoderPID(TestPara, 40, -10, 0.4, 0,true);
     wait(500,msec);
     Clamp.set(true); // clamp onto mogo

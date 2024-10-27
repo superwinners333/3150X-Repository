@@ -110,6 +110,10 @@ void RunRoller(int val)
 {
 Roller.setMaxTorque(100,percent);
 Roller.spin(forward,(double)val/100.0*12,volt);
+
+Roller2.setMaxTorque(100,percent);
+Roller2.spin(forward,(double)val/100.0*12,volt);
+
 }
 
 int PrevE;//Error at t-1
