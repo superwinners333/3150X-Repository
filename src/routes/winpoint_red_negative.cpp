@@ -9,9 +9,11 @@
 void winpoint_red_negative() 
 {
     PIDDataSet TestPara={1.5,0.1,0.15};
-    MoveEncoderPID(TestPara, 100, -5 , 0.4,0,true); // move backwards into wall
+    MoveEncoderPID(TestPara, 80, -7 , 0.4,-45,true); // move backwards into wall
     wait(400,msec);
-    RunRoller(-100); // put ring on alliance stake
+    MoveEncoderPID(TestPara, 40, 2 , 0.4,0,true);
+    wait(400,msec);
+    RunRoller(100); // put ring on alliance stake
     wait(3,sec);
     RunRoller(0); // stop intake
     MoveEncoderPID(TestPara, 100, 6 , 0.4,0,true); // move forward

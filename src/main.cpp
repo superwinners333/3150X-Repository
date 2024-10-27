@@ -232,7 +232,7 @@ Zeroing(true,true);
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)//Quali close 6 triball auto 
 {
-  // test();
+  winpoint_red_negative();
 }
 
 if(AutoSelectorVal==2)// awp mid steal

@@ -20,7 +20,7 @@ motor Roller2 = motor(PORT8, ratio18_1, true);
 digital_out Pistake = digital_out(Brain.ThreeWirePort.D);
 digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
-inertial Gyro = inertial(PORT15);
+inertial Gyro = inertial(PORT20);
 //Naming convention: 
 // Important variables
 const double wheelDiam = 3.25;
