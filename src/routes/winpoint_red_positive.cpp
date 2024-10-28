@@ -13,12 +13,6 @@ void winpoint_red_positive()
     MoveEncoderPID(TestPara, 100, -23, 0.4, 0,true);
     MoveEncoderPID(TestPara, 40, -5, 0.4, 0,true);
 
-    // TurnMaxTimePID(TestPara, 90, 5, true);
-    // wait(10,sec);
-
-    // MoveEncoderPID(TestPara, 40, -24, 0.4 , 0 ,true);
-    // MoveEncoderPID(TestPara, 40, -6, 0.4 , 0 ,true);
-
     wait(250,msec);
     Clamp.set(true);
     wait(250,msec);  
@@ -34,6 +28,7 @@ void winpoint_red_positive()
     RunRoller(-100);
     MoveEncoderPID(TestPara, 100, -5, 0.4, 90 ,true); 
 
-    TurnMaxTimePID(TestPara, 45, 1, true)
+    TurnMaxTimePID(TestPara, 45, 1, true);
+    RunRoller(0);
     MoveEncoderPID(TestPara, 100, -6, 0.4, 45 ,true); 
 }

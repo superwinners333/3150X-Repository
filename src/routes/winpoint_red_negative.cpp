@@ -33,4 +33,8 @@ void winpoint_red_negative()
     wait(4,sec);
     RunRoller(-100);
     MoveEncoderPID(TestPara, 100, -5, 0.4, -90 ,true); 
+
+    // TurnMaxTimePID(TestPara, -45, 1, true);
+    // RunRoller(0);
+    // MoveEncoderPID(TestPara, 100, -6, 0.4, -45 ,true); 
 }
