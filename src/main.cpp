@@ -105,7 +105,7 @@ Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("Red Negative");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("RED- AWP");
+Brain.Screen.print("RED- 2");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 
@@ -117,9 +117,9 @@ Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("MATCHLOAD");
+Brain.Screen.print("Red Negative");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("StealAWP");
+Brain.Screen.print("Red- 3");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 }
@@ -133,7 +133,7 @@ Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("Red Positive");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Basic Red+");
+Brain.Screen.print("Red+ 3");
 Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
 }
@@ -161,7 +161,7 @@ Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("Red Positive");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("RED+ AWP");
+Brain.Screen.print("RED+ 2");
 Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 
@@ -230,20 +230,19 @@ Zeroing(true,true);
 
 //can start editing if nessary
 //Put Auto route function into if statements to use autoselector
-if(AutoSelectorVal==1)//Quali close 6 triball auto 
+if(AutoSelectorVal==1)// two rings red negative corner 
 {
-  winpoint_red_negative();
+  two_red_negative();
 }
 
-if(AutoSelectorVal==2)// awp mid steal
+if(AutoSelectorVal==2)// three rings red negative corner
 {
-  // test2();
-
+  three_red_negative();
 }
 
-if(AutoSelectorVal==3)// Basic Red Positive Corner
+if(AutoSelectorVal==3)// three rings Red Positive Corner
 {
-  basic_red_positive();
+  three_red_positive();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal
@@ -252,9 +251,9 @@ if(AutoSelectorVal==4)// Elim-Steal
   
 }
 
-if(AutoSelectorVal==5)// empty
+if(AutoSelectorVal==5)// two rings red positive corner
 {
-   winpoint_red_positive();
+  two_red_positive();
 }
 
 
