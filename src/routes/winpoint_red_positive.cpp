@@ -11,16 +11,23 @@ void winpoint_red_positive()
 
     // PIDDataSet TestPara={4,0.1,0.2};
     PIDDataSet TestPara={1.5,0.1,0.15};
-    // wait(4,sec);
-    MoveEncoderPID(TestPara, 40, -24, 0.4 , 0 ,true);
+
+    MoveEncoderPID(TestPara, 100, -23, 0.4, 0,true);
+    MoveEncoderPID(TestPara, 40, -5, 0.4, 0,true);
+
+    // TurnMaxTimePID(TestPara, 90, 5, true);
+    // wait(10,sec);
+
+    // MoveEncoderPID(TestPara, 40, -24, 0.4 , 0 ,true);
     // MoveEncoderPID(TestPara, 40, -6, 0.4 , 0 ,true);
+
     wait(250,msec);
-    Clamp.set(true); // clamp onto mogo
+    Clamp.set(true);
     wait(250,msec);  
     RunRoller(100);
+
     wait(250,msec);
-    TurnMaxTimePID(TestPara, 90, 1, true);
+    TurnMaxTimePID(TestPara, -90, 1, true);
     wait(250,msec);
     MoveEncoderPID(TestPara, 100, 18, 0.4, 90 ,true);    
-    // MoveEncoderPID(TestPara, 100, -1  , 0.4, 90,true);
 }
