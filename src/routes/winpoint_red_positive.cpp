@@ -7,9 +7,7 @@
 // MoveTimePID(TestPara, motor speed, time traveled (sec), time to full speed, heading, false);
 
 void winpoint_red_positive() 
-{   
-
-    // PIDDataSet TestPara={4,0.1,0.2};
+{   // PIDDataSet TestPara={4,0.1,0.2};
     PIDDataSet TestPara={1.5,0.1,0.15};
 
     MoveEncoderPID(TestPara, 100, -23, 0.4, 0,true);
@@ -27,7 +25,15 @@ void winpoint_red_positive()
     RunRoller(100);
 
     wait(250,msec);
-    TurnMaxTimePID(TestPara, -90, 1, true);
+    TurnMaxTimePID(TestPara, 90, 1, true);
     wait(250,msec);
-    MoveEncoderPID(TestPara, 100, 18, 0.4, 90 ,true);    
+    MoveEncoderPID(TestPara, -100, -18, 0.4, 90 ,true);    
+    wait(250,msec);
+    MoveEncoderPID(TestPara, 100, -4, 0.4, 90 ,true); 
+    wait(4,sec);
+    RunRoller(-100);
+    MoveEncoderPID(TestPara, 100, -5, 0.4, 90 ,true); 
+
+    TurnMaxTimePID(TestPara, 45, 1, true)
+    MoveEncoderPID(TestPara, 100, -6, 0.4, 45 ,true); 
 }

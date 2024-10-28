@@ -9,14 +9,28 @@
 void winpoint_red_negative() 
 {
     PIDDataSet TestPara={1.5,0.1,0.15};
-    MoveEncoderPID(TestPara, 80, -7 , 0.4,-45,true); 
-    wait(400,msec);
-    MoveEncoderPID(TestPara, 40, 2 , 0.4,0,true);
-    wait(400,msec);
-    RunRoller(100); // put ring on alliance stake
-    wait(3,sec);
-    RunRoller(0); // stop intake
-    MoveEncoderPID(TestPara, 100, 6 , 0.4,0,true);
 
+    MoveEncoderPID(TestPara, 100, -23, 0.4, 0,true);
+    MoveEncoderPID(TestPara, 40, -5, 0.4, 0,true);
 
+    // TurnMaxTimePID(TestPara, 90, 5, true);
+    // wait(10,sec);
+
+    // MoveEncoderPID(TestPara, 40, -24, 0.4 , 0 ,true);
+    // MoveEncoderPID(TestPara, 40, -6, 0.4 , 0 ,true);
+
+    wait(250,msec);
+    Clamp.set(true);
+    wait(250,msec);  
+    RunRoller(100);
+
+    wait(250,msec);
+    TurnMaxTimePID(TestPara, -90, 1, true);
+    wait(250,msec);
+    MoveEncoderPID(TestPara, -100, -18, 0.4, -90 ,true);    
+    wait(250,msec);
+    MoveEncoderPID(TestPara, 100, -4, 0.4, -90 ,true); 
+    wait(4,sec);
+    RunRoller(-100);
+    MoveEncoderPID(TestPara, 100, -5, 0.4, -90 ,true); 
 }
