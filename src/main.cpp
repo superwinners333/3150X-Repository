@@ -131,9 +131,9 @@ Brain.Screen.setFillColor(black);
     Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("Red Positive");
+Brain.Screen.print("Blue Negative");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Red+ 3");
+Brain.Screen.print("Blue- 3");
 Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
 }
@@ -242,7 +242,7 @@ if(AutoSelectorVal==2)// three rings red negative corner
 
 if(AutoSelectorVal==3)// three rings Red Positive Corner
 {
-  three_red_positive();
+  three_blue_negative();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal

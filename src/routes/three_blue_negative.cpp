@@ -9,7 +9,7 @@
 // make sure that heading stays the same between turns
 // or not if u think you can do it without
 
-void three_red_negative() 
+void three_blue_negative() 
 {
     PIDDataSet TestPara={1.5,0.1,0.15};
 
@@ -22,32 +22,32 @@ void three_red_negative()
     RunRoller(100); // activates intake
 
     wait(250,msec);
-    TurnMaxTimePID(TestPara, 90, 1, true); // turns to face stacked rings
+    TurnMaxTimePID(TestPara, -90, 1, true); // turns to face stacked rings
     wait(200,msec);
-    MoveEncoderPID(TestPara, -100, -25, 0.4, 90 ,true); // drives towards stacked rings
+    MoveEncoderPID(TestPara, -100, -25, 0.4, -90 ,true); // drives towards stacked rings
     wait(150,msec);
-    MoveEncoderPID(TestPara, 100, -65, 0.4, 110, true);
+    MoveEncoderPID(TestPara, 100, -65, 0.4, -110, true);
     wait(200,msec);
     Clamp.set(false); // deactivates the clamp
     wait(100,msec);
-    MoveEncoderPID(TestPara, -100, -7, 0.4, 110, true);
+    MoveEncoderPID(TestPara, -100, -7, 0.4, -110, true);
     wait(150, msec);
-    TurnMaxTimePID(TestPara, 50, 1, true);
+    TurnMaxTimePID(TestPara, -50, 1, true);
     wait(150, msec);
-    MoveEncoderPID(TestPara, 50, -23, 0.4, 45, true);
+    MoveEncoderPID(TestPara, 50, -23, 0.4, -45, true);
     wait(100, msec);
     Clamp.set(true); // activates the clamp
     wait(100, msec);
-    MoveEncoderPID(TestPara, 100, -5, 0.4, 45, true);
+    MoveEncoderPID(TestPara, 100, -5, 0.4, -45, true);
     wait(100, msec);
-    TurnMaxTimePID(TestPara, -90, 1, true);
+    TurnMaxTimePID(TestPara, 90, 1, true);
     wait(150,msec);
-    MoveEncoderPID(TestPara, -100, -18, 0.4, -90, true);
+    MoveEncoderPID(TestPara, -100, -18, 0.4, 90, true);
     wait(100, msec);
-    MoveEncoderPID(TestPara, 100, -15, 0.4, -90, true);
+    MoveEncoderPID(TestPara, 100, -15, 0.4, 90, true);
     wait(100, msec);
-    TurnMaxTimePID(TestPara, -45, 1, true);
+    TurnMaxTimePID(TestPara, 45, 1, true);
     RunRoller(0);
     wait(50, msec);
-    MoveEncoderPID(TestPara, 100, -7, 0.4, -45, true);
+    MoveEncoderPID(TestPara, 100, -7, 0.4, 45, true);
 }
