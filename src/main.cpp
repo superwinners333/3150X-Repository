@@ -247,8 +247,7 @@ if(AutoSelectorVal==3)// three rings Red Positive Corner
 
 if(AutoSelectorVal==4)// Elim-Steal
 {
-
-  
+  solo_awp();
 }
 
 if(AutoSelectorVal==5)// two rings red positive corner

@@ -12,4 +12,5 @@ extern void two_red_positive();
 extern void two_red_negative();
 extern void three_blue_negative();
 extern void three_red_negative();
+extern void solo_awp();
 #endif

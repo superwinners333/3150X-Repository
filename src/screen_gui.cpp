@@ -53,7 +53,7 @@ void DisplayWords(void)
   Brain.Screen.print("RED- 3");
 
   Brain.Screen.setCursor(7,40);
-  Brain.Screen.print("ELIM-STEAL");
+  Brain.Screen.print("SOLO-AWP");
 
     Brain.Screen.setCursor(11,40);
   Brain.Screen.print("ML-AWP");
@@ -135,16 +135,16 @@ Brain.Screen.setFont(monoM);
 if(AutoSelectorVal==4){
 Brain.Screen.drawRectangle(375,100,100,50);
   Brain.Screen.setCursor(7,40);
-  Brain.Screen.print("Elim-Steal");
+  Brain.Screen.print("Solo AWP");
 
 Brain.Screen.setFillColor(black);
 
   Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("MATCHLOAD");
+Brain.Screen.print("Red+ Blue-");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Elim-Steal");
+Brain.Screen.print("Solo AWP");
 Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 
