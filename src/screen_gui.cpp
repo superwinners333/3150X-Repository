@@ -108,9 +108,9 @@ Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("MATCHLOAD");
+Brain.Screen.print("RED-");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("StealAWP");
+Brain.Screen.print("3 Red-");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 }
