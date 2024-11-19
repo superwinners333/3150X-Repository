@@ -111,8 +111,12 @@ void RunRoller(int val)
 Roller.setMaxTorque(100,percent);
 Roller.spin(forward,(double)val/100.0*12,volt);
 
-Roller2.setMaxTorque(100,percent);
-Roller2.spin(forward,(double)val/100.0*12,volt);
+}
+
+void RunArms(int val)
+{
+Wall.setMaxTorque(100,percent);
+Wall.spin(forward,(double)val/100.0*12,volt);
 
 }
 

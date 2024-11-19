@@ -292,15 +292,17 @@ int V;
 int ATask(void)
 {
   double pow;
+  double pow2;
     while(true)
   {
     pow=((Controller1.ButtonR2.pressing()-Controller1.ButtonR1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
     RunRoller(-pow);
     
-  
+    pow2=((Controller1.ButtonL2.pressing()-Controller1.ButtonL1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
+    RunArms(-pow2);
+
   //RunPuncher((Controller1.ButtonB.pressing())*100);
   }
-  
   return 0;
 }
 
