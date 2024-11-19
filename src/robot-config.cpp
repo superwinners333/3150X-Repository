@@ -23,7 +23,9 @@ motor Wall = motor(PORT15, ratio36_1, false);
 digital_out Pistake = digital_out(Brain.ThreeWirePort.C);
 digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
-rotation Liftensor(PORT15);
+rotation LiftSensor = rotation(PORT15, false);
+int LiftAngle = LiftSensor.angle();
+
 inertial Gyro = inertial(PORT2);
 // Important variables
 const double wheelDiam = 2.75;
