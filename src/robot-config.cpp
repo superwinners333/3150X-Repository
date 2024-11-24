@@ -23,8 +23,8 @@ motor Wall = motor(PORT15, ratio36_1, false);
 digital_out Pistake = digital_out(Brain.ThreeWirePort.C);
 digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
-rotation LiftSensor = rotation(PORT15, false);
-int LiftAngle = LiftSensor.angle();
+rotation LiftSensor = rotation(PORT15, true);
+int LiftAngle = LiftSensor.angle(); // IMPORTANT
 
 inertial Gyro = inertial(PORT2);
 // Important variables

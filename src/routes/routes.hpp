@@ -8,9 +8,9 @@
 extern void test();
 extern void test2();
 extern void basic_red_positive();
-extern void two_red_positive();
-extern void two_red_negative();
-extern void three_blue_negative();
-extern void three_red_negative();
+extern void red_positive();
+extern void blue_positive();
+extern void blue_negative();
+extern void red_negative();
 extern void solo_awp();
 #endif

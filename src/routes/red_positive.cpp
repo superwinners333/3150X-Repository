@@ -6,7 +6,7 @@
 // TurnMaxTimePID(TestPara, Desired Heading -180 to 180, time out to calculate turn, Braking?)
 // MoveTimePID(TestPara, motor speed, time traveled (sec), time to full speed, heading, false);
 
-void two_red_positive() 
+void red_positive() 
 {   
     PIDDataSet TestPara={1.5,0.1,0.15};
 

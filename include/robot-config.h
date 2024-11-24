@@ -18,6 +18,9 @@ extern digital_out Pistake;
 extern motor PU;
 extern inertial Gyro;
 
+extern rotation LiftSensor;
+extern int LiftAngle;
+
 extern const double wheelDiam;
 extern const double wheelToMotorRatio;
 

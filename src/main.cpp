@@ -45,6 +45,7 @@ void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
 Gyro.calibrate();
+LiftSensor.setPosition(0.0, degrees);
 
 //Ensure Robot Launch Position is set before auto proceeds, once plugged into field control,
 //start program and do not temper bot under all circumstances
@@ -103,9 +104,9 @@ if(AutoSelectorVal==1){
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
-Brain.Screen.print("Red Negative");
+Brain.Screen.print("Blue Positive");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("RED- 2");
+Brain.Screen.print("BLUE+");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 
@@ -119,7 +120,7 @@ Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("Red Negative");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Red- 3");
+Brain.Screen.print("Red-");
 Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 }
@@ -133,7 +134,7 @@ Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("Blue Negative");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Blue- 3");
+Brain.Screen.print("Blue-");
 Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
 }
@@ -161,7 +162,7 @@ Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(3,10);
 Brain.Screen.print("Red Positive");
 Brain.Screen.setCursor(4,10);
-Brain.Screen.print("RED+ 2");
+Brain.Screen.print("RED+");
 Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 
@@ -232,17 +233,17 @@ Zeroing(true,true);
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)// two rings red negative corner 
 {
-  two_red_negative();
+  blue_positive();
 }
 
 if(AutoSelectorVal==2)// three rings red negative corner
 {
-  three_red_negative();
+  red_negative();
 }
 
 if(AutoSelectorVal==3)// three rings Red Positive Corner
 {
-  three_blue_negative();
+  blue_negative();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal
@@ -252,7 +253,7 @@ if(AutoSelectorVal==4)// Elim-Steal
 
 if(AutoSelectorVal==5)// two rings red positive corner
 {
-  two_red_positive();
+  red_positive();
 }
 
 
@@ -264,8 +265,7 @@ if(AutoSelectorVal==6)//AWP only
 
 if(AutoSelectorVal==7)//temporary prog skills
 { 
- 
-
+  
 }
 //MoveTimePID(TestPara, -100, 0.5,0.1,-40,true);//score 2nd triball
 //(PID Parameters, motor speed -100 - 100, time for travel 0 - inf, time to accelerate to full speed, Absolute Heading, Braking?)
@@ -298,7 +298,7 @@ int ATask(void)
     pow=((Controller1.ButtonR2.pressing()-Controller1.ButtonR1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
     RunRoller(-pow);
     
-    pow2=((Controller1.ButtonL2.pressing()-Controller1.ButtonL1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
+    pow2=((Controller1.ButtonL2.pressing()-Controller1.ButtonL1.pressing())*100);//Calculate arm power, if button pressed, button.pressing returns 1
     RunArms(-pow2);
 
   //RunPuncher((Controller1.ButtonB.pressing())*100);
@@ -308,6 +308,7 @@ int ATask(void)
 
 int ButtonPressingX,XTaskActiv;
 int ButtonPressingY,YTaskActiv;
+int ButtonPressingA,ATaskActiv;
 
 int PTask(void)
 {
@@ -345,6 +346,52 @@ int PTask(void)
       ButtonPressingY=1;
       YTaskActiv=0;
       Doinker.set(false);
+    }
+  
+  //--------------------------
+      // Toggles Pistake
+    if(ATaskActiv==0&&Controller1.ButtonA.pressing()&&ButtonPressingA==0)
+    {
+      ButtonPressingA=1;
+      ATaskActiv=1;
+      Pistake.set(true);
+    }
+
+    else if(!Controller1.ButtonA.pressing())ButtonPressingA=0;
+
+    else if(ATaskActiv==1&&Controller1.ButtonA.pressing()&&ButtonPressingA==0)
+    {
+      ButtonPressingA=1;
+      ATaskActiv=0;
+      Pistake.set(false);
+    }
+
+
+    // MACRO CODE (ABSOLUTE NIGHTMARE)
+    bool MacroToggle = false;
+    int ArmDistance;
+
+    if (Controller1.ButtonUp.pressing())
+    {
+      MacroToggle = true; // turns on macro
+    }
+    if (MacroToggle)
+    {
+      ArmDistance = LiftSensor.angle() - 40; // distance from target
+
+      if (ArmDistance > 41)
+      {
+        RunArms(10 + ArmDistance); 
+      }
+      if (ArmDistance < 39)
+      {
+        RunArms(-10 - ArmDistance);
+      }
+
+      else
+      {
+        MacroToggle = false; // turns off macro
+      }
     }
 
   }
