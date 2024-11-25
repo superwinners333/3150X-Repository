@@ -117,7 +117,12 @@ void RunArms(int val)
 {
 Wall.setMaxTorque(100,percent);
 Wall.spin(forward,(double)val/100.0*12,volt);
-
+Wall.setStopping(hold);
+}
+void StopArms(void)
+{
+  Wall.setStopping(hold);
+  Wall.stop();
 }
 
 int PrevE;//Error at t-1

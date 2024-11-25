@@ -19,7 +19,7 @@ extern motor PU;
 extern inertial Gyro;
 
 extern rotation LiftSensor;
-extern int LiftAngle;
+extern double LiftAngle;
 
 extern const double wheelDiam;
 extern const double wheelToMotorRatio;

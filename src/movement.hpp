@@ -28,6 +28,7 @@ extern void BStop();
 extern void CStop();
 extern void RunRoller(int val);
 extern void RunArms(int val);
+extern void StopArms(void);
 extern int PrevE;
 extern void MoveEncoderPID(PIDDataSet KVals, int Speed, double dist,double AccT, double ABSHDG,bool brake);
 extern void TurnMaxTimePID(PIDDataSet KVals,double DeltaAngle,double TE, bool brake);

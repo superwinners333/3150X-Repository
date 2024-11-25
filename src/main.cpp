@@ -14,7 +14,9 @@
 #include "movement.hpp"
 #include "routes/routes.hpp"
 
+#include <iostream>
 using namespace vex;
+
 
 // A global instance of competition
 competition Competition;
@@ -299,7 +301,15 @@ int ATask(void)
     RunRoller(-pow);
     
     pow2=((Controller1.ButtonL2.pressing()-Controller1.ButtonL1.pressing())*100);//Calculate arm power, if button pressed, button.pressing returns 1
-    RunArms(-pow2);
+    if (pow2 == 0)
+    {
+      // Wall.setStopping(hold);
+      RunArms(0);
+    }
+    else
+    {
+      RunArms(-pow2);
+    }
 
   //RunPuncher((Controller1.ButtonB.pressing())*100);
   }
@@ -309,6 +319,10 @@ int ATask(void)
 int ButtonPressingX,XTaskActiv;
 int ButtonPressingY,YTaskActiv;
 int ButtonPressingA,ATaskActiv;
+
+bool MacroToggle = false;
+int ArmDistance;
+
 
 int PTask(void)
 {
@@ -368,30 +382,53 @@ int PTask(void)
 
 
     // MACRO CODE (ABSOLUTE NIGHTMARE)
-    bool MacroToggle = false;
-    int ArmDistance;
+  
+    LiftAngle = LiftSensor.position(degrees); 
 
-    if (Controller1.ButtonUp.pressing())
+    if (Controller1.ButtonB.pressing())
     {
       MacroToggle = true; // turns on macro
     }
     if (MacroToggle)
     {
-      ArmDistance = LiftSensor.angle() - 40; // distance from target
-
-      if (ArmDistance > 41)
+      ArmDistance = LiftAngle - 314; // distance from target
+      std::cout << LiftAngle;
+      if (LiftAngle > 316)
       {
-        RunArms(10 + ArmDistance); 
-      }
-      if (ArmDistance < 39)
+        if (ArmDistance > 40)
+        {
+          RunArms(100);
+        }
+        else
+        {
+          RunArms(50); 
+        }
+      } 
+      else if (LiftAngle < 312)
       {
-        RunArms(-10 - ArmDistance);
+        if (ArmDistance < -40)
+        {
+          RunArms(-100);
+        }
+        else
+        {
+          RunArms(-50); 
+        }
       }
-
       else
       {
         MacroToggle = false; // turns off macro
+        RunArms(0);
       }
+    }
+
+    if (Controller1.ButtonUp.pressing())
+    {
+      MacroToggle = false;
+    }
+    if (Controller1.ButtonDown.pressing())
+    {
+      StopArms();
     }
 
   }
