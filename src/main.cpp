@@ -40,6 +40,7 @@ void pre_auton(void) {
    EXIT=false;
   Doinker.set(false);
   Clamp.set(false);
+  Pistake.set(false);
   PX=0;
   JX=0;
   AutoSelectorVal=0;
@@ -300,16 +301,16 @@ int ATask(void)
     pow=((Controller1.ButtonR2.pressing()-Controller1.ButtonR1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
     RunRoller(-pow);
     
-    pow2=((Controller1.ButtonL2.pressing()-Controller1.ButtonL1.pressing())*100);//Calculate arm power, if button pressed, button.pressing returns 1
-    if (pow2 == 0)
-    {
-      // Wall.setStopping(hold);
-      RunArms(0);
-    }
-    else
-    {
-      RunArms(-pow2);
-    }
+    // pow2=((Controller1.ButtonL2.pressing()-Controller1.ButtonL1.pressing())*100);//Calculate arm power, if button pressed, button.pressing returns 1
+    // if (pow2 == 0)
+    // {
+    //   // Wall.setStopping(hold);
+    //   RunArms(0);
+    // }
+    // else
+    // {
+    //   RunArms(-pow2);
+    // }
 
   //RunPuncher((Controller1.ButtonB.pressing())*100);
   }
@@ -319,6 +320,7 @@ int ATask(void)
 int ButtonPressingX,XTaskActiv;
 int ButtonPressingY,YTaskActiv;
 int ButtonPressingA,ATaskActiv;
+int ButtonPressingB,BTaskActiv;
 
 bool MacroToggle = false;
 int ArmDistance;
@@ -346,18 +348,18 @@ int PTask(void)
     }
     //----------------------
       // Toggles Doinker
-    if(YTaskActiv==0&&Controller1.ButtonY.pressing()&&ButtonPressingY==0)
+    if(YTaskActiv==0&&Controller1.ButtonB.pressing()&&ButtonPressingB==0)
     {
-      ButtonPressingY=1;
+      ButtonPressingB=1;
       YTaskActiv=1;
       Doinker.set(true);
     }
 
-    else if(!Controller1.ButtonY.pressing())ButtonPressingY=0;
+    else if(!Controller1.ButtonB.pressing())ButtonPressingB=0;
 
-    else if(YTaskActiv==1&&Controller1.ButtonY.pressing()&&ButtonPressingY==0)
+    else if(YTaskActiv==1&&Controller1.ButtonB.pressing()&&ButtonPressingB==0)
     {
-      ButtonPressingY=1;
+      ButtonPressingB=1;
       YTaskActiv=0;
       Doinker.set(false);
     }
@@ -379,61 +381,61 @@ int PTask(void)
       ATaskActiv=0;
       Pistake.set(false);
     }
-
-
-    // MACRO CODE (ABSOLUTE NIGHTMARE)
-  
-    LiftAngle = LiftSensor.position(degrees); 
-
-    if (Controller1.ButtonB.pressing())
-    {
-      MacroToggle = true; // turns on macro
     }
-    if (MacroToggle)
-    {
-      ArmDistance = LiftAngle - 314; // distance from target
-      std::cout << LiftAngle;
-      if (LiftAngle > 316)
-      {
-        if (ArmDistance > 40)
-        {
-          RunArms(100);
-        }
-        else
-        {
-          RunArms(50); 
+}
+
+
+int BTask(void) {
+  int mvel = 0;
+  int pow1 = 0;
+
+  while(true) {
+
+    if(BTaskActiv==1) {
+      ;
+      if(abs(LiftSensor.position(degrees)) < 32) {
+        RunArms(100);
+        if(abs(LiftSensor.position(degrees)) > 25) {
+          BTaskActiv = 0;
         }
       } 
-      else if (LiftAngle < 312)
-      {
-        if (ArmDistance < -40)
-        {
-          RunArms(-100);
+      else if(abs(LiftSensor.position(degrees)) > 25) {
+        RunArms(-100);
+        if(abs(LiftSensor.position(degrees)) <  32) {
+          BTaskActiv = 0;
         }
-        else
-        {
-          RunArms(-50); 
-        }
+      } 
+    }
+    else {
+      pow1=(Controller1.ButtonL1.pressing()-Controller1.ButtonL2.pressing())*100;
+      if(pow1==0) {
+        Wall.setStopping(hold);
+        Wall.stop();
       }
-      else
-      {
-        MacroToggle = false; // turns off macro
-        RunArms(0);
+      else {
+        RunArms(pow1);
       }
     }
 
-    if (Controller1.ButtonUp.pressing())
-    {
-      MacroToggle = false;
+
+    if(Controller1.ButtonY.pressing() && ButtonPressingY == 0) {
+      ButtonPressingY=1;
+      BTaskActiv=1;
     }
-    if (Controller1.ButtonDown.pressing())
-    {
-      StopArms();
+
+    else if(!Controller1.ButtonY.pressing())ButtonPressingY=0;
+
+    else if(BTaskActiv==1&&Controller1.ButtonY.pressing()&&ButtonPressingY==0) {
+      ButtonPressingY=1;
+      BTaskActiv=0;
+      RunArms(0);
     }
+
 
   }
   return 0;
 }
+
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
@@ -457,6 +459,7 @@ void usercontrol(void) {
     task Dtask=task(DriveTask);
     task Atask=task(ATask);
     task Ptask=task(PTask);
+    task Btask=task(BTask);
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
@@ -483,8 +486,14 @@ int main() {
   
 
   // Prevent main from exiting with an infinite loop.
+  using namespace std;
   while (true) {
     wait(100, msec);
+    
+    // std::cout << "BLOU" << endl;
+    std::cout << LiftSensor.position(degrees) << endl;
+    
+
   }
 }
   
