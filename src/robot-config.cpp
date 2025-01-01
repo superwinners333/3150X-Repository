@@ -10,21 +10,21 @@ brain  Brain;
 // VEXcode device constructors
 controller Controller1 = controller(primary);
 // left drivetrain
-motor LF = motor(PORT8, ratio6_1, false);
-motor LM = motor(PORT9, ratio6_1, false);
-motor LB = motor(PORT10, ratio6_1, false);
+motor LF = motor(PORT19, ratio6_1, false);
+motor LM = motor(PORT20, ratio6_1, false);
+motor LB = motor(PORT18, ratio6_1, false);
 // right drivetrain
-motor RF = motor(PORT5, ratio6_1, true);
-motor RM = motor(PORT6, ratio6_1, true);
-motor RB = motor(PORT7, ratio6_1, true);
+motor RF = motor(PORT9, ratio6_1, true);
+motor RM = motor(PORT14, ratio6_1, true);
+motor RB = motor(PORT8, ratio6_1, true);
 // other motors
-motor Roller = motor(PORT12, ratio6_1, false);
-motor Wall = motor(PORT15, ratio36_1, false);
+motor Roller = motor(PORT16, ratio6_1, false);
+motor Wall = motor(PORT1, ratio36_1, false);
 digital_out Pistake = digital_out(Brain.ThreeWirePort.C);
 digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
-rotation LiftSensor = rotation(PORT1, false);
 
+rotation LiftSensor = rotation(PORT15, false);
 
 inertial Gyro = inertial(PORT2);
 // Important variables
