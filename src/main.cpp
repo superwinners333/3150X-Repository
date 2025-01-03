@@ -268,7 +268,7 @@ if(AutoSelectorVal==6)//AWP only
 
 if(AutoSelectorVal==7)//temporary prog skills
 { 
-  
+  prog_skills();
 }
 //MoveTimePID(TestPara, -100, 0.5,0.1,-40,true);//score 2nd triball
 //(PID Parameters, motor speed -100 - 100, time for travel 0 - inf, time to accelerate to full speed, Absolute Heading, Braking?)
@@ -388,20 +388,19 @@ int PTask(void)
 int BTask(void) {
   int mvel = 0;
   int pow1 = 0;
-
   while(true) {
 
     if(BTaskActiv==1) {
-      ;
-      if(abs(LiftSensor.position(degrees)) < 32) {
-        RunArms(100);
-        if(abs(LiftSensor.position(degrees)) > 25) {
+      
+      if(abs(LiftSensor.position(degrees)) < 34) {
+        RunArms(50);
+        if(abs(LiftSensor.position(degrees)) > 27) {
           BTaskActiv = 0;
         }
       } 
-      else if(abs(LiftSensor.position(degrees)) > 25) {
-        RunArms(-100);
-        if(abs(LiftSensor.position(degrees)) <  32) {
+      else if(abs(LiftSensor.position(degrees)) > 27) {
+        RunArms(-50);
+        if(abs(LiftSensor.position(degrees)) <  34) {
           BTaskActiv = 0;
         }
       } 
@@ -412,11 +411,14 @@ int BTask(void) {
         Wall.setStopping(hold);
         Wall.stop();
       }
+      if(pow1 < 0 && abs(LiftSensor.position(degrees)) < 4){
+        Wall.setStopping(hold);
+        Wall.stop();
+      }
       else {
         RunArms(pow1);
       }
     }
-
 
     if(Controller1.ButtonY.pressing() && ButtonPressingY == 0) {
       ButtonPressingY=1;

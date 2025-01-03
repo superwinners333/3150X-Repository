@@ -113,17 +113,51 @@ Roller.spin(forward,(double)val/100.0*12,volt);
 
 }
 
-void RunArms(int val)
+int RunArms(int val)
 {
-Wall.setMaxTorque(100,percent);
-Wall.spin(forward,(double)val/100.0*12,volt);
-Wall.setStopping(hold);
+  Wall.setMaxTorque(100,percent);
+  Wall.spin(forward,(double)val/100.0*12,volt);
+  Wall.setStopping(hold);
+  return 0;
 }
 void StopArms(void)
 {
   Wall.setStopping(hold);
   Wall.stop();
 }
+void RestrictArms(void)
+{
+  if(abs(LiftSensor.position(degrees)) > 25)
+  {
+    Wall.stop();
+  } 
+}
+
+void Macro(void)
+{
+  int MacroActiv = 1;
+  int mvel = 0;
+  int pow1 = 0;
+
+  while(MacroActiv==1) {
+    
+    if(abs(LiftSensor.position(degrees)) < 34) {
+      RunArms(50);
+      if(abs(LiftSensor.position(degrees)) > 27) {
+        MacroActiv = 0;
+        StopArms();
+      }
+    } 
+    else if(abs(LiftSensor.position(degrees)) > 27) {
+      RunArms(-50);
+      if(abs(LiftSensor.position(degrees)) <  34) {
+        MacroActiv = 0;
+        StopArms();
+      }
+    } 
+  }
+}
+
 
 int PrevE;//Error at t-1
 
