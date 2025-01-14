@@ -15,9 +15,9 @@ void blue_negative()
 
 // CLAMP CODE
     // Pistake.set(true);
-    MoveEncoderPID(TestPara, 100, -8, 0.4, -0,true); // drives most of the way to mogo
+    MoveEncoderPID(TestPara, 100, -11.7, 0.4, -0, true); // drives most of the way to mogo
     wait(50,msec);
-    MoveEncoderPID(TestPara, 40, -3.6, 0.4, -0,true); // goes rest of the way to mogo
+    MoveEncoderPID(TestPara, 42, -5.4, 0.4, -0, true); // goes rest of the way to mogo
     wait(100,msec);
     Clamp.set(true); // activates clamp
     wait(100,msec);
@@ -28,7 +28,7 @@ void blue_negative()
     MoveEncoderPID(TestPara, -100, -15.5, 0.4, -145 ,true); // drives towards first center ring (2) and intakes it 
     wait(120,msec);
     // TurnMaxTimePID(TestPara, -90, 0.4, true); // turns to second center ring (3)
-    MoveEncoderPID(TestPara, -100, -6, 0.4, -83, true); // moves to second center ring (3) 
+    MoveEncoderPID(TestPara, -100, -7, 0.4, -83, true); // moves to second center ring (3) 
     wait(120,msec);
 
 // STACKED BOTTOM RING CODE (4)
@@ -38,12 +38,14 @@ void blue_negative()
 
 // CORNER RING CODE (5)
     TurnMaxTimePID(TestPara, -25, 0.4, true);
-    MoveEncoderPID(TestPara, -100, -28, 0.4, -25, true); // rotates + moves to corner ring (5)
+    MoveEncoderPID(TestPara, -100, -28, 0.4, -37, true); // rotates + moves to corner ring (5)
     RunRoller(-100);
-    wait(500,msec);
-    RunRoller(100);
+    MoveEncoderPID(TestPara, -100, -2, 0.4, -37, true);
     wait(200,msec);
-    MoveEncoderPID(TestPara, 100, -12, 0.4, -25, true); // moves away from the corner ring (5)
+    RunRoller(100);
+    MoveEncoderPID(TestPara, -100, -3, 0.4, -37, true);
+    wait(200,msec);
+    MoveEncoderPID(TestPara, 100, -11, 0.4, -37, true); // moves away from the corner ring (5)
 
 // STACKED TOP RING CODE (6)
     wait(100,msec);
@@ -52,10 +54,11 @@ void blue_negative()
     Pistake.set(true); // activates pistake
     MoveEncoderPID(TestPara, -100, -12, 0.4, 85, true); // moves towards stack top ring (6)
     wait(100,msec);
+    Pistake.set(false);
 
 // TOUCHING TOWER CODE
     MoveEncoderPID(TestPara, 100, -2, 0.4, 90, true); // drives backwards
     TurnMaxTimePID(TestPara, -180, 0.4, true); // turns towards tower
-    MoveEncoderPID(TestPara, -100, -5, 0.4, 180, false); // goes towards tower
+    MoveEncoderPID(TestPara, -100, -7, 0.4, 180, false); // goes towards tower
     
 }

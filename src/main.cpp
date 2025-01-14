@@ -363,24 +363,6 @@ int PTask(void)
       YTaskActiv=0;
       Doinker.set(false);
     }
-  
-  //--------------------------
-      // Toggles Pistake
-    if(ATaskActiv==0&&Controller1.ButtonA.pressing()&&ButtonPressingA==0)
-    {
-      ButtonPressingA=1;
-      ATaskActiv=1;
-      Pistake.set(true);
-    }
-
-    else if(!Controller1.ButtonA.pressing())ButtonPressingA=0;
-
-    else if(ATaskActiv==1&&Controller1.ButtonA.pressing()&&ButtonPressingA==0)
-    {
-      ButtonPressingA=1;
-      ATaskActiv=0;
-      Pistake.set(false);
-    }
     }
 }
 
@@ -411,7 +393,7 @@ int BTask(void) {
         Wall.setStopping(hold);
         Wall.stop();
       }
-      if(pow1 < 0 && abs(LiftSensor.position(degrees)) < 4){
+      if((pow1 < 0 && abs(LiftSensor.position(degrees)) < 4) || (pow1 > 0 && abs(LiftSensor.position(degrees)) > 250)){
         Wall.setStopping(hold);
         Wall.stop();
       }
