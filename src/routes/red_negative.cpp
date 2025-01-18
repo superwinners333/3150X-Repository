@@ -55,6 +55,7 @@ void red_negative()
 // TOUCHING TOWER CODE
     // MoveEncoderPID(TestPara, 100, -2, 0.4, 90, true); // drives backwards
     TurnMaxTimePID(TestPara, 180, 0.4, true); // turns towards tower
+    Pistake.set(false);
     MoveEncoderPID(TestPara, -100, -8, 0.4, 180, false); // goes towards tower
     RunArms(100);
     wait(800,msec);
