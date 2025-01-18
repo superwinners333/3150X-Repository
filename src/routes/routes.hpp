@@ -14,4 +14,5 @@ extern void blue_negative();
 extern void red_negative();
 extern void solo_awp();
 extern void prog_skills();
+extern void old_six_blue();
 #endif

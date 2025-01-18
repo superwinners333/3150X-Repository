@@ -8,66 +8,35 @@
 
 void blue_positive() 
 { // NEGATIVE IS TO THE LEFT
-    // we start at 47 degrees???
+    // we start at 42 degrees???
     PIDDataSet TestPara={1.5,0.1,0.15};
 
-    Macro();
-    RunRoller(100);
-    wait(300,msec);
-    RunRoller(0);
-    MoveEncoderPID(TestPara, -100, -1.5, 0.4, 0,true); // drives towards alliance stake
+    TurnMaxTimePID(TestPara, -40, 0.4, true);
+    MoveEncoderPID(TestPara,-50,0.8,0.2,-40,true);
     RunArms(100);
-    wait(1.15,sec);
-    StopArms();
-    wait(100,msec);
-    RunArms(-65);
-    MoveEncoderPID(TestPara, 100, -9.6, 0.4, 0,true); // drives away from alliance stake
-    TurnMaxTimePID(TestPara, -46, 0.9, true); // turns back towards mogo
-    StopArms();
-    wait(100,msec);
-    MoveEncoderPID(TestPara, 100, -6, 0.4, -46,true); // drives towards mogo
-    wait(50,msec);
-    MoveEncoderPID(TestPara, 40, -6.2, 0.4, -46,true);
-    wait(100,msec);
+    wait(600,msec);
+    RunArms(0);
+    TurnMaxTimePID(TestPara, -40, 1, true);
+    MoveEncoderPID(TestPara,80,16,0.2,-40,true);
+    MoveEncoderPID(TestPara,25,15,0.2,-0,true);
     Clamp.set(true);
-    wait(100,msec);
-
-    // CENTER RINGS CODE
-    TurnMaxTimePID(TestPara, 172, 0.4, true); // turns to face first center ring (2)
-    RunRoller(100); // spins intake forward
-    MoveEncoderPID(TestPara, -100, -12, 0.4, 172 ,true); // drives towards first center ring (2) and intakes it 
-    wait(130,msec);
-    // TurnMaxTimePID(TestPara, -90, 0.4, true); // turns to second center ring (3)
-    MoveEncoderPID(TestPara, -100, -7.5, 0.4, -130, true); // moves to second center ring (3) 
-    wait(120,msec);
-
-// STACKED BOTTOM RING CODE (4)
-    TurnMaxTimePID(TestPara, -31, 0.4, true); // rotates to stack bottom ring (4)
-    MoveEncoderPID(TestPara, -100, -15, 0.4, -31, true); // goes to stack bottom ring (4)
-    // wait(100,msec);
-
-// CORNER RING CODE (5)
-    TurnMaxTimePID(TestPara, -83, 0.4, true);
-    MoveEncoderPID(TestPara, -100, -28, 0.4, -85, true); // rotates + moves to corner ring (5)
-    RunRoller(-100);
-    MoveEncoderPID(TestPara, -100, -2, 0.4, -85, true);
-    wait(200,msec);
+    wait(300,msec);
+    RunArms(-100);
+    wait(700,msec);
+    RunArms(0);
+    TurnMaxTimePID(TestPara, 85, 1, false);
     RunRoller(100);
-    MoveEncoderPID(TestPara, -100, -3, 0.4, -85, true);
-    wait(200,msec);
-    MoveEncoderPID(TestPara, 100, -8, 0.4, -85, true); // moves away from the corner ring (5)
-
-// STACKED TOP RING CODE (6)
-    wait(100,msec);
-    TurnMaxTimePID(TestPara, 38, 0.4, true); // rotates to stack top ring (6)
-    MoveEncoderPID(TestPara, -100, -12, 0.4, 38, true); // moves towards stack top ring (6)
-    Pistake.set(true); // activates pistake
-    MoveEncoderPID(TestPara, -100, -12, 0.4, 38, true); // moves towards stack top ring (6)
-    wait(100,msec);
+    MoveEncoderPID(TestPara,-100,13,0.2,85,false); // grabs first ring
+    MoveEncoderPID(TestPara,100,12.5,0.2,85,false);
+    TurnMaxTimePID(TestPara, -39, 1, false);
+    Pistake.set(true);
+    MoveEncoderPID(TestPara,-100,17,0.2,-43,true); // moves to stacked ring
+    wait(400,msec);
     Pistake.set(false);
-
-// TOUCHING TOWER CODE
-    MoveEncoderPID(TestPara, 100, -2, 0.4, 47, true); // drives backwards
-    TurnMaxTimePID(TestPara, 137, 0.4, true); // turns towards tower
-    MoveEncoderPID(TestPara, -100, -10, 0.4, 137, false); // goes towards tower
+    wait(100,msec);
+    TurnMaxTimePID(TestPara, 180, 1, false);
+    MoveEncoderPID(TestPara,-100,17,0.2, 180,true);
+    RunArms(100);
+    wait(800,msec);
+    RunArms(0);
 }

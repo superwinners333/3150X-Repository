@@ -8,45 +8,51 @@
 
 void solo_awp() 
 {   
+   
     PIDDataSet TestPara={1.5,0.1,0.15}; // for red positive corner or blue negative
-
-    MoveEncoderPID(TestPara, 90, -19, 0.4, 0,true); // moves most of the way to mogo
-    MoveEncoderPID(TestPara, 40, -5, 0.4, 0,true); // moves rest of the way to mogo
-    
-    wait(100,msec); 
-    Clamp.set(true); // clamps onto mogo
-    wait(100,msec);  
-    TurnMaxTimePID(TestPara, -90, 1, true); // turns to face stacked rings
-    RunRoller(100); // activates intake
-    wait(100,msec);
-    MoveEncoderPID(TestPara, -100, -18, 0.4, -90 ,true); // goes to stacked rings
-    wait(150,msec);
-    MoveEncoderPID(TestPara, 100, -9, 0.4, -90 ,true); // drives backwards a bit to get them out of the bot
-    
-    // 2 ring part ends here
-
-    // TurnMaxTimePID(TestPara, -135, 1, true);
-    // MoveEncoderPID(TestPara, -100, -13, 0.4, -135 ,true);
-    // wait(200,msec);
-    // MoveEncoderPID(TestPara, 100, -13, 0.4, -135 ,true);
-
-    // sketch part
-
-    TurnMaxTimePID(TestPara, 45, 1, true);
-    wait(500,msec);
-    Clamp.set(false);
-    MoveEncoderPID(TestPara, -100, -20, 0.4, 45 ,true); // drives accross to middle
-    TurnMaxTimePID(TestPara, -48, 1, true); // rotates to mogo
-    MoveEncoderPID(TestPara, 100, -17, 0.4, -48 ,true); // drives to mogo
-    MoveEncoderPID(TestPara, 40, -5, 0.4, -48,true);
-    wait(100,msec);
+    TurnMaxTimePID(TestPara, 35, 0.4, true);
+    MoveEncoderPID(TestPara,-50,0.8,0.2,35,true);
+    RunArms(100);
+    wait(600,msec);
+    RunArms(0);
+    TurnMaxTimePID(TestPara, 25, 1, true);
+    MoveEncoderPID(TestPara,80,22,0.2,25,true);
+    MoveEncoderPID(TestPara,20,10,0.2,16,true);
     Clamp.set(true);
+    wait(300,msec);
+    RunArms(-100);
+    wait(700,msec);
+    RunArms(0);
+    TurnMaxTimePID(TestPara, -85, 1, false);
+    RunRoller(100);
+    MoveEncoderPID(TestPara,-100,13,0.2,-85,false); // grabs first ring
+    MoveEncoderPID(TestPara,100,12.5,0.2,-85,false);
+    TurnMaxTimePID(TestPara, 39, 1, false);
+    Pistake.set(true);
+    MoveEncoderPID(TestPara,-100,17,0.2,45,true);
+    wait(400,msec);
+    Pistake.set(false);
+    wait(1,sec);
+    Clamp.set(false);
     wait(100,msec);
-    TurnMaxTimePID(TestPara, 90, 1, true); // turns to rings on other side
-    MoveEncoderPID(TestPara, -100, -13, 0.4, 90 ,true); // drives to rings
-    TurnMaxTimePID(TestPara, -135, 1, true);
-    wait(100,msec);
-    MoveEncoderPID(TestPara, -80, -24, 0.4, -135 ,true);
+    RunRoller(0);
+    TurnMaxTimePID(TestPara, -40, 1, true);
+    RunRoller(-100);
+    MoveEncoderPID(TestPara,80,12.5,0.2,-40,false);
+    MoveEncoderPID(TestPara,25,11,0.2,-40,true);
+    Clamp.set(true);
+    wait(500,msec);
+    RunRoller(100);
+    TurnMaxTimePID(TestPara, 90, 1, true);
+    MoveEncoderPID(TestPara,-100,16,0.2,90,true);
+    TurnMaxTimePID(TestPara, -100, 1, true);
+    MoveEncoderPID(TestPara,-80,28,0.2,-100,true);
+    RunArms(100);
+    wait(700,msec);
+    StopArms();
+
+
+
     
     // this stuff down here just makes the bot touch the ladder
 
