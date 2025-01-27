@@ -247,6 +247,7 @@ if(AutoSelectorVal==2)// three rings red negative corner
 if(AutoSelectorVal==3)// three rings Red Positive Corner
 {
   blue_negative();
+  // old_six_blue();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal

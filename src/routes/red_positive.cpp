@@ -11,31 +11,53 @@ void red_positive()
     // we start at 42 degrees???
     PIDDataSet TestPara={1.5,0.1,0.15};
 
-    TurnMaxTimePID(TestPara, 40, 0.4, true);
-    MoveEncoderPID(TestPara,-50,0.8,0.2,40,true);
+    TurnMaxTimePID(TestPara, 34, 0.4, true);
+    MoveEncoderPID(TestPara,-50,1.1,0.2,34,true);
     RunArms(100);
-    wait(600,msec);
+    wait(550,msec);
     RunArms(0);
-    TurnMaxTimePID(TestPara, 40, 1, true);
-    MoveEncoderPID(TestPara,80,16,0.2,40,true);
-    MoveEncoderPID(TestPara,25,15,0.2,-0,true);
+    TurnMaxTimePID(TestPara, 25, 1, true);
+    MoveEncoderPID(TestPara,80,28,0.2,25,true); // grabs mogo
+    MoveEncoderPID(TestPara,30,10,0.2,16,true);
     Clamp.set(true);
-    wait(300,msec);
+    wait(100,msec);
     RunArms(-100);
     wait(700,msec);
     RunArms(0);
-    TurnMaxTimePID(TestPara, -85, 1, false);
+    
+    TurnMaxTimePID(TestPara, -105, 1, false);
     RunRoller(100);
-    MoveEncoderPID(TestPara,-100,13,0.2,-85,false); // grabs first ring
-    MoveEncoderPID(TestPara,100,12.5,0.2,-85,false);
-    TurnMaxTimePID(TestPara, 39, 1, false);
-    Pistake.set(true);
-    MoveEncoderPID(TestPara,-100,17,0.2,43,true); // moves to stacked ring
-    wait(400,msec);
-    Pistake.set(false);
+    MoveEncoderPID(TestPara,-100,34,0.2,-105,false); // grabs first ring
+    MoveEncoderPID(TestPara,100,30,0.4,-130,false);
+    wait(15,msec);
+    TurnMaxTimePID(TestPara, -60, 1, false);
+
+    wait(50,msec);
+    RunRoller(-100);
+    MoveEncoderPID(TestPara,-70,86,0.5,-60,true); // moves to corner ring
+    wait(250,msec);
+    RunRoller(100);
+    MoveEncoderPID(TestPara,-100,5,0.3,-60,true); // runs into corner more
+    wait(200,msec);
+
+    MoveEncoderPID(TestPara,100,1.0,0.3,-60,true); // drive out slightly
+    wait(15,msec);
+    MoveEncoderPID(TestPara,-100,2,0.3,-60,true); // ram back in
+
     wait(100,msec);
-    TurnMaxTimePID(TestPara, 180, 1, false);
-    MoveEncoderPID(TestPara,-100,17,0.2, 180,true);
+    MoveEncoderPID(TestPara,50,32,1.1,-60,true); // drives away from corner
+
+    wait(100,msec);
+
+    TurnMaxTimePID(TestPara, 90, 1, false); // turns toward stacked ring
+    Pistake.set(true);
+    MoveEncoderPID(TestPara,-100,41.5,0.2,90,true); // moves to stacked ring
+    wait(400,msec);
+    Pistake.set(false); // deactivates pistake
+    wait(100,msec);
+
+    TurnMaxTimePID(TestPara, 170, 1, false); // turns to ladder
+    MoveEncoderPID(TestPara,-100,25,0.2, 170,true);
     RunArms(100);
     wait(800,msec);
     RunArms(0);

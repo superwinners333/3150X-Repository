@@ -29,7 +29,7 @@ rotation LiftSensor = rotation(PORT15, false);
 inertial Gyro = inertial(PORT2);
 // Important variables
 const double wheelDiam = 2.75;
-const double wheelToMotorRatio = 36.0/48;
+const double wheelToMotorRatio = 48.0/36;
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
