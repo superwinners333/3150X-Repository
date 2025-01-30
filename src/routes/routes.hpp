@@ -12,7 +12,10 @@ extern void red_positive();
 extern void blue_positive();
 extern void blue_negative();
 extern void red_negative();
-extern void solo_awp();
+extern void blue_solo_awp();
+extern void red_solo_awp();
 extern void prog_skills();
 extern void old_six_blue();
+extern void six_blue();
+extern void six_red();
 #endif

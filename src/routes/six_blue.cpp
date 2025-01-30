@@ -6,28 +6,25 @@
 // TurnMaxTimePID(TestPara, Desired Heading -180 to 180, time out to calculate turn, Braking?)
 // MoveTimePID(TestPara, motor speed, time traveled (sec), time to full speed, heading, false);
 
-void blue_negative() // original
-{ // NEGATIVE IS TO THE LEFT
-    PIDDataSet TestPara={1.5,0.1,0.15};
- 
-    TurnMaxTimePID(TestPara, 34, 0.4, true);
-    MoveEncoderPID(TestPara,-50,1.1,0.2,34,true);
-    RunArms(100);
-    wait(550,msec);
-    RunArms(0);
-    TurnMaxTimePID(TestPara, 25, 1, true);
-    MoveEncoderPID(TestPara,80,28,0.2,25,true);
-    MoveEncoderPID(TestPara,30,10,0.2,16,true);
-    Clamp.set(true);
-    wait(100,msec);
-    RunArms(-100);
-    wait(700,msec);
-    RunArms(0);
+// Left is - heading
 
-    // CENTER RINGS CODE
-    TurnMaxTimePID(TestPara, -140, 0.4, true); // turns to face first center ring (2)
+void six_blue() 
+{
+    // NEGATIVE HEADING TURNS TO THE LEFT
+    PIDDataSet TestPara={1.5,0.1,0.15};
+
+// CLAMP CODE
+    // Pistake.set(true);
+    MoveEncoderPID(TestPara, 100, -23, 0.4, 0, true); // drives most of the way to mogo
+    MoveEncoderPID(TestPara, 20, -10, 0.4, 0, true); // goes rest of the way to mogo
+    wait(100,msec);
+    Clamp.set(true); // activates clamp
+    wait(100,msec);
+
+// CENTER RINGS CODE
+    TurnMaxTimePID(TestPara, -140, 0.4, false); // turns to face first center ring (2)
     RunRoller(100); // spins intake forward
-    MoveEncoderPID(TestPara, -100, -31, 0.4, -140 ,true); // drives towards first center ring (2) and intakes it 
+    MoveEncoderPID(TestPara, -100, -28, 0.4, -140 ,true); // drives towards first center ring (2) and intakes it 
     wait(120,msec);
     // TurnMaxTimePID(TestPara, -90, 0.4, true); // turns to second center ring (3)
     MoveEncoderPID(TestPara, -100, -19, 0.4, -86, true); // moves to second center ring (3) 
@@ -37,16 +34,23 @@ void blue_negative() // original
     // RunRoller(0);
     TurnMaxTimePID(TestPara, 19, 0.7, true); // rotates to stack bottom ring (4)
     RunRoller(0);
-    MoveEncoderPID(TestPara, -100, -60, 0.4, 19, true); // goes to stack bottom ring (4)
+    MoveEncoderPID(TestPara, -100, -65, 0.4, 19, true); // goes to stack bottom ring (4)
     RunRoller(100);
+
+// CORNER RINGS
+    wait(300,msec);
+    TurnMaxTimePID(TestPara, -66, 0.4, false); // rotates to face corner (5)
+    MoveEncoderPID(TestPara, -100, -75, 0.4, -66, true); // runs into corner
+    wait(200,msec);
+    MoveEncoderPID(TestPara, 100, -65, 0.4, -66, true); // backs away from corner
+
 
 // STACKED TOP RING CODE (5)
     wait(300,msec);
-    // TurnMaxTimePID(TestPara, 85, 0.4, true); // rotates to stack top ring (5)
     TurnMaxTimePID(TestPara, 85, 0.4, true); // rotates to stack top ring (5)
-    MoveEncoderPID(TestPara, -100, -20, 0.4, 85, true); // moves towards stack top ring (5)
+    MoveEncoderPID(TestPara, -100, -15, 0.4, 85, true); // moves towards stack top ring (5)
     Pistake.set(true); // activates pistake
-    MoveEncoderPID(TestPara, -100, -22, 0.4, 85, true); // moves towards stack top ring (5)
+    MoveEncoderPID(TestPara, -100, -15, 0.4, 85, true); // moves towards stack top ring (5)
     wait(100,msec);
     Pistake.set(false);
 
@@ -57,4 +61,5 @@ void blue_negative() // original
     RunArms(100);
     wait(800,msec);
     StopArms();
+    
 }

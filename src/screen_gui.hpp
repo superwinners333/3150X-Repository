@@ -2,6 +2,7 @@
 #define SCREEN_GUI_H
 
 extern int AutoSelectorVal;
+extern bool OtherCodes;
 
 extern void DisplayAutoSelector();
 extern void DisplayWords();

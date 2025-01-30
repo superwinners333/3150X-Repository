@@ -158,6 +158,31 @@ void Macro(void)
   }
 }
 
+void AllianceStake(void)
+{
+  int AllianceActiv = 1;
+  int mvel = 0;
+  int pow1 = 0;
+
+  while(AllianceActiv==1) {
+    
+    if(abs(LiftSensor.position(degrees)) < 197) {
+      RunArms(100);
+      if(abs(LiftSensor.position(degrees)) > 187) {
+        AllianceActiv = 0;
+        StopArms();
+      }
+    } 
+    else if(abs(LiftSensor.position(degrees)) > 187) {
+      RunArms(-100);
+      if(abs(LiftSensor.position(degrees)) <  197) {
+        AllianceActiv = 0;
+        StopArms();
+      }
+    } 
+  }
+}
+
 
 int PrevE;//Error at t-1
 

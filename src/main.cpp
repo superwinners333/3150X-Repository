@@ -44,6 +44,7 @@ void pre_auton(void) {
   PX=0;
   JX=0;
   AutoSelectorVal=0;
+  OtherCodes=false; // wack
   SP=false;
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
@@ -91,8 +92,17 @@ else if(Brain.Screen.yPosition()<225&&Brain.Screen.yPosition()>175)AutoSelectorV
 
 if(Brain.Screen.xPosition()>187&&Brain.Screen.xPosition()<287)
 {
-if(Brain.Screen.yPosition()<55&&Brain.Screen.yPosition()>5) EXIT=true;
-else if(Brain.Screen.yPosition()>125&&Brain.Screen.yPosition()<225)AutoSelectorVal=7;
+  if(Brain.Screen.yPosition()<55&&Brain.Screen.yPosition()>5) EXIT=true;
+
+  else if(Brain.Screen.yPosition()>125&&Brain.Screen.yPosition()<225) // SKETCHY STUFF BELOW
+  {
+    AutoSelectorVal=7;
+    if (OtherCodes)
+    {
+      OtherCodes = false;
+    }
+    else OtherCodes = true;
+  }
 }
 
 if(Brain.Screen.pressing()&&!SP) UpdateDynamic();
@@ -103,84 +113,113 @@ SP=Brain.Screen.pressing();
 
 Brain.Screen.clearScreen();
 if(AutoSelectorVal==1){
+
   Brain.Screen.setFillColor(black);
-Brain.Screen.setFont(monoXL);
-Brain.Screen.setPenColor("#39FF14");
-Brain.Screen.setCursor(3,10);
-Brain.Screen.print("Blue Positive");
-Brain.Screen.setCursor(4,10);
-Brain.Screen.print("BLUE+");
-Brain.Screen.setFont(monoM);
+  Brain.Screen.setFont(monoXL);
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("Blue Positive");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("BLUE+");
+  Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 
 }
 
 if(AutoSelectorVal==2){
-Brain.Screen.setFillColor(black);
 
+  Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
-Brain.Screen.setPenColor("#39FF14");
-Brain.Screen.setCursor(3,10);
-Brain.Screen.print("Red Negative");
-Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Red-");
-Brain.Screen.setFont(monoM);
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("BLUE NEGATIVE");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("Solo AWP");
+  Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 }
 
 if(AutoSelectorVal==3){
 
-Brain.Screen.setFillColor(black);
-
-    Brain.Screen.setFont(monoXL);
-Brain.Screen.setPenColor("#39FF14");
-Brain.Screen.setCursor(3,10);
-Brain.Screen.print("Blue Negative");
-Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Blue-");
-Brain.Screen.setFont(monoM);  
+  if (!OtherCodes) {
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.setFont(monoXL);
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("Blue Negative");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("Blue-");
+  Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
+  }
+  
+  if (OtherCodes) {
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.setFont(monoXL);
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("Six Blue");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("Blue-");
+  Brain.Screen.setFont(monoM);  
+  Brain.Screen.setFillColor("#39FF14");
+  }
+
+
 }
 
 if(AutoSelectorVal==4){
 
-Brain.Screen.setFillColor(black);
-
+  Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
-Brain.Screen.setPenColor("#39FF14");
-Brain.Screen.setCursor(3,10);
-Brain.Screen.print("RED+ BLUE-");
-Brain.Screen.setCursor(4,10);
-Brain.Screen.print("Solo AWP");
-Brain.Screen.setFont(monoM); 
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("Red Positive");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("RED+");
+  Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 
 }
 
 if(AutoSelectorVal==5){
 
-Brain.Screen.setFillColor(black);
-    Brain.Screen.setFont(monoXL);
-Brain.Screen.setPenColor("#39FF14");
-Brain.Screen.setCursor(3,10);
-Brain.Screen.print("Red Positive");
-Brain.Screen.setCursor(4,10);
-Brain.Screen.print("RED+");
-Brain.Screen.setFont(monoM); 
+  if (!OtherCodes) {
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.setFont(monoXL);
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("Red Negative");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("RED-");
+  Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
+  }
+  
+  if (OtherCodes) {
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.setFont(monoXL);
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("Six Red");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("RED-");
+  Brain.Screen.setFont(monoM); 
+  Brain.Screen.setFillColor("#39FF14");
+  }
 
 }
 
 if(AutoSelectorVal==6){
   
   Brain.Screen.setFillColor(black);
-    Brain.Screen.setFont(monoXL);
-Brain.Screen.setPenColor("#39FF14");
-Brain.Screen.setCursor(3,10);
-Brain.Screen.print("MATCHLOAD");
-Brain.Screen.setCursor(4,10);
-Brain.Screen.print("ONLY AWP");
-Brain.Screen.setFont(monoM); 
+  Brain.Screen.setFont(monoXL);
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("Red Negative");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("Solo AWP");
+  Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
 
   }
@@ -234,36 +273,37 @@ Zeroing(true,true);
 
 //can start editing if nessary
 //Put Auto route function into if statements to use autoselector
-if(AutoSelectorVal==1)// two rings red negative corner 
+if(AutoSelectorVal==1)// Blue 4 Ring
 {
   blue_positive();
 }
 
-if(AutoSelectorVal==2)// three rings red negative corner
+if(AutoSelectorVal==2)// Blue Solo AWP
 {
-  red_negative();
+  blue_solo_awp();
 }
 
-if(AutoSelectorVal==3)// three rings Red Positive Corner
+if(AutoSelectorVal==3)// Blue 5 / 6 Ring
 {
-  blue_negative();
-  // old_six_blue();
+  if (!OtherCodes) blue_negative();
+  else if (OtherCodes) six_blue();
 } 
 
-if(AutoSelectorVal==4)// Elim-Steal
-{
-  solo_awp();
-}
-
-if(AutoSelectorVal==5)// two rings red positive corner
+if(AutoSelectorVal==4)// Red 4 Ring
 {
   red_positive();
 }
 
-
-if(AutoSelectorVal==6)//AWP only
+if(AutoSelectorVal==5)// Red 5 / 6 Ring
 {
+  if (!OtherCodes) red_negative();
+  else if (OtherCodes) six_red();
+}
 
+
+if(AutoSelectorVal==6)// Red Solo AWP
+{
+  red_solo_awp();
 }
 
 
@@ -421,6 +461,21 @@ int BTask(void) {
   return 0;
 }
 
+int TimeCounter = 0;
+int SecondCounter = TimeCounter / 5;
+
+int MogoTask(void) {
+  TimeCounter += 1;
+  SecondCounter = TimeCounter / 5;
+
+  if (SecondCounter == 72); {
+    TimeCounter += 5;
+    SecondCounter += 1;
+    Controller1.rumble("- - -");
+  }
+  return 0;
+}
+
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
@@ -431,27 +486,28 @@ int BTask(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
+
 void usercontrol(void) {
   EXIT=true;//Force Exit Autosel once drivercontrol began.
   // User control code here, inside the loop
+
   while (1) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
     
-     
-    
     task Dtask=task(DriveTask);
     task Atask=task(ATask);
     task Ptask=task(PTask);
     task Btask=task(BTask);
+
+    // task Mtask=task(MogoTask);
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
     // ........................................................................
 
-    wait(20, msec); // Sleep the task for a short amount of time to
-                    // prevent wasted resources.
+    wait(20, msec); // Sleep the task for a short amount of time to prevent wasted resources.
   }
 }
 

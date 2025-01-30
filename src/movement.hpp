@@ -31,6 +31,7 @@ extern int RunArms(int val);
 extern void StopArms(void);
 extern void RestrictArms(void);
 extern void Macro(void);
+extern void AllianceStake(void);
 extern int PrevE;
 extern void MoveEncoderPID(PIDDataSet KVals, int Speed, double dist,double AccT, double ABSHDG,bool brake);
 extern void TurnMaxTimePID(PIDDataSet KVals,double DeltaAngle,double TE, bool brake);
