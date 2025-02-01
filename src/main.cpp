@@ -461,16 +461,10 @@ int BTask(void) {
   return 0;
 }
 
-int TimeCounter = 0;
-int SecondCounter = TimeCounter / 5;
 
 int MogoTask(void) {
-  TimeCounter += 1;
-  SecondCounter = TimeCounter / 5;
 
-  if (SecondCounter == 72); {
-    TimeCounter += 5;
-    SecondCounter += 1;
+  if (Brain.Timer.time(msec) == 5000); {
     Controller1.rumble("- - -");
   }
   return 0;
@@ -490,7 +484,7 @@ int MogoTask(void) {
 void usercontrol(void) {
   EXIT=true;//Force Exit Autosel once drivercontrol began.
   // User control code here, inside the loop
-
+  Brain.Timer.clear(); // resets brain timer
   while (1) {
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
