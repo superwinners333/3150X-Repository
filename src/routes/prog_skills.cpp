@@ -97,13 +97,16 @@ void prog_skills()
     MoveTimePID(TestPara, 30, 2.4, 0.8, -90, true); // runs into wall stake
     wait(120,msec);
     RunRoller(0);
-    Move(-20,-20);
+
+    Move(-20,-20); // continuously drives into bot
     RunArms(100); // scores on wall stake
-    wait(1.7,sec);
-    RunArms(-30);
+    wait(1.4,sec);
+    RunArms(-30); // wiggle the wall stake mech
     wait(40,msec);
-    RunArms(100);
+    RunArms(100); 
+    wait(400,msec);
     Move(0,0);
+
     RunArms(-100);
     MoveEncoderPID(TestPara, 100, -5, 0.4, -90,true); // moves back
     wait(500,msec);
