@@ -193,7 +193,7 @@ if(AutoSelectorVal==5){
   Brain.Screen.setCursor(4,10);
   Brain.Screen.print("RED-");
   Brain.Screen.setFont(monoM); 
-  Brain.Screen.setFillColor("#39FF14");
+  Brain.Screen.setFillColor("#39FF14"); 
   }
   
   if (OtherCodes) {
@@ -415,15 +415,15 @@ int BTask(void) {
 
     if(BTaskActiv==1) {
       
-      if(abs(LiftSensor.position(degrees)) < 34) {
-        RunArms(50);
-        if(abs(LiftSensor.position(degrees)) > 27) {
+      if(abs(LiftSensor.position(degrees)) < 32) {
+        RunArms(60);
+        if(abs(LiftSensor.position(degrees)) > 25) {
           BTaskActiv = 0;
         }
       } 
-      else if(abs(LiftSensor.position(degrees)) > 27) {
-        RunArms(-50);
-        if(abs(LiftSensor.position(degrees)) <  34) {
+      else if(abs(LiftSensor.position(degrees)) > 25) {
+        RunArms(-60);
+        if(abs(LiftSensor.position(degrees)) <  32) {
           BTaskActiv = 0;
         }
       } 

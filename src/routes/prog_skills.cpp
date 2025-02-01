@@ -15,7 +15,7 @@ void prog_skills()
 
     RunRoller(100); // activates intake and scores ring on alliance stake
     wait(400,msec);
-    MoveEncoderPID(TestPara, -100, -9, 0.2, 0,true); // drives away from wall
+    MoveEncoderPID(TestPara, -100, -10, 0.2, 0,true); // drives away from wall
     TurnMaxTimePID(TestPara, -90, 0.4, false); // turns towards mogo
     wait(20,msec);
     MoveEncoderPID(TestPara, 100, -14, 0.2, -90,true); // goes to mogo
@@ -38,9 +38,13 @@ void prog_skills()
     MoveTimePID(TestPara, 30, 2.4, 0.7, 90, true); // runs into wall stake
     wait(120,msec);
     RunRoller(0);
+    wait(20,msec);
+    RunRoller(100); // stutters the intake
+    wait(30,msec);
+    RunRoller(0);
     Move(-20,-20); // runs into wall stake continuously
     RunArms(100); // scores on wall stake
-    wait(1.7,sec);
+    wait(1.6,sec);
     Move(0,0);
     RunArms(-100);
     wait(20,msec);
@@ -97,16 +101,14 @@ void prog_skills()
     MoveTimePID(TestPara, 30, 2.4, 0.8, -90, true); // runs into wall stake
     wait(120,msec);
     RunRoller(0);
-
+    wait(20,msec);
+    RunRoller(100); // stutters intake
+    wait(30,msec);
+    RunRoller(0);
     Move(-20,-20); // continuously drives into bot
     RunArms(100); // scores on wall stake
-    wait(1.4,sec);
-    RunArms(-30); // wiggle the wall stake mech
-    wait(40,msec);
-    RunArms(100); 
-    wait(400,msec);
+    wait(1.6,sec);
     Move(0,0);
-
     RunArms(-100);
     MoveEncoderPID(TestPara, 100, -5, 0.4, -90,true); // moves back
     wait(500,msec);
@@ -150,7 +152,7 @@ void prog_skills()
     // PUSHING MOGO INTO CORNER AND CLAMPING ANOTHER ONE
     TurnMaxTimePID(TestPara, 0, 0.4, false); // turns to face mogo
     MoveEncoderPID(TestPara, -100, -40, 0.4, 0, false); // drives into mogo
-    MoveTimePID(TestPara, 80, 2.8, 0.4, -80, false); // pushes mogo into corner ------ IMPORTANT VALUE
+    MoveTimePID(TestPara, 80, 2.6, 0.4, -80, false); // pushes mogo into corner ------ IMPORTANT VALUE
 
     MoveEncoderPID(TestPara, 100, -73, 0.4, -75, true); // drives backwards into next mogo
     MoveEncoderPID(TestPara, 25, -23, 0.4, -75, true); // slows down

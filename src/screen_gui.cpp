@@ -53,19 +53,19 @@ void DisplayWords(void)
     Brain.Screen.print("BLUE 6");
   }
   //-----------------------------------------------
-  Brain.Screen.setCursor(11,3);
+  Brain.Screen.setCursor(3,40);
   Brain.Screen.print("BLUE-AWP");
 
-  Brain.Screen.setCursor(3,40);
+  Brain.Screen.setCursor(7,40);
   Brain.Screen.print("RED+");
 
   //-----------------------------------------------
   if (!OtherCodes){
-    Brain.Screen.setCursor(7,40);
+    Brain.Screen.setCursor(11,3);
     Brain.Screen.print("RED-");
   }
   if (OtherCodes){
-    Brain.Screen.setCursor(7,40);
+    Brain.Screen.setCursor(11,3);
     Brain.Screen.print("RED 6");
   }
   //-----------------------------------------------

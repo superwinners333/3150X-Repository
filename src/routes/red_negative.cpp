@@ -17,7 +17,7 @@ void red_negative()
     RunArms(0);
     TurnMaxTimePID(TestPara, -25, 1, true);
     MoveEncoderPID(TestPara,80,28,0.2,-25,true);
-    MoveEncoderPID(TestPara,30,10,0.2,-16,true);
+    MoveEncoderPID(TestPara,30,12,0.2,-16,true);
     Clamp.set(true);
     wait(100,msec);
     RunArms(-100);
@@ -28,9 +28,9 @@ void red_negative()
     TurnMaxTimePID(TestPara, 140, 0.4, true); // turns to face first center ring (2)
     RunRoller(100); // spins intake forward
     MoveEncoderPID(TestPara, -100, -31, 0.4, 140 ,true); // drives towards first center ring (2) and intakes it 
-    wait(120,msec);
+    wait(140,msec);
     // TurnMaxTimePID(TestPara, -90, 0.4, true); // turns to second center ring (3)
-    MoveEncoderPID(TestPara, -100, -19, 0.4, 86, true); // moves to second center ring (3) 
+    MoveEncoderPID(TestPara, -100, -20, 0.4, 86, true); // moves to second center ring (3) 
     wait(130,msec);
 
 // STACKED BOTTOM RING CODE (4)
