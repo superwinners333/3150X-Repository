@@ -18,4 +18,6 @@ extern void prog_skills();
 extern void old_six_blue();
 extern void six_blue();
 extern void six_red();
+extern void red_corner_clear();
+extern void blue_corner_clear();
 #endif

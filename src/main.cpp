@@ -112,35 +112,45 @@ SP=Brain.Screen.pressing();
 }
 
 Brain.Screen.clearScreen();
+// ---------------------------------------------------------------- //
 if(AutoSelectorVal==1){
-
-  Brain.Screen.setFillColor(black);
-  Brain.Screen.setFont(monoXL);
-  Brain.Screen.setPenColor("#39FF14");
-  Brain.Screen.setCursor(3,10);
-  Brain.Screen.print("Blue Positive");
-  Brain.Screen.setCursor(4,10);
-  Brain.Screen.print("BLUE+");
-  Brain.Screen.setFont(monoM);
-  Brain.Screen.setFillColor("#39FF14");
-
+  if (!OtherCodes){
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.setFont(monoXL);
+    Brain.Screen.setPenColor("#39FF14");
+    Brain.Screen.setCursor(3,10);
+    Brain.Screen.print("Blue Positive");
+    Brain.Screen.setCursor(4,10);
+    Brain.Screen.print("BLUE+");
+    Brain.Screen.setFont(monoM);
+    Brain.Screen.setFillColor("#39FF14");
+  }
+  if (OtherCodes){
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.setFont(monoXL);
+    Brain.Screen.setPenColor("#39FF14");
+    Brain.Screen.setCursor(3,10);
+    Brain.Screen.print("Blue Corner Clear");
+    Brain.Screen.setCursor(4,10);
+    Brain.Screen.print("BLUE+");
+    Brain.Screen.setFont(monoM);
+    Brain.Screen.setFillColor("#39FF14");
+  }
 }
-
+// ---------------------------------------------------------------- //
 if(AutoSelectorVal==2){
-
   Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
   Brain.Screen.setPenColor("#39FF14");
   Brain.Screen.setCursor(3,10);
-  Brain.Screen.print("BLUE NEGATIVE");
-  Brain.Screen.setCursor(4,10);
   Brain.Screen.print("Solo AWP");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("BLUE-");
   Brain.Screen.setFont(monoM);
   Brain.Screen.setFillColor("#39FF14");
 }
-
+// ---------------------------------------------------------------- //
 if(AutoSelectorVal==3){
-
   if (!OtherCodes) {
   Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
@@ -148,11 +158,10 @@ if(AutoSelectorVal==3){
   Brain.Screen.setCursor(3,10);
   Brain.Screen.print("Blue Negative");
   Brain.Screen.setCursor(4,10);
-  Brain.Screen.print("Blue-");
+  Brain.Screen.print("BLUE-");
   Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
   }
-  
   if (OtherCodes) {
   Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
@@ -160,58 +169,64 @@ if(AutoSelectorVal==3){
   Brain.Screen.setCursor(3,10);
   Brain.Screen.print("Six Blue");
   Brain.Screen.setCursor(4,10);
-  Brain.Screen.print("Blue-");
+  Brain.Screen.print("BLUE-");
   Brain.Screen.setFont(monoM);  
   Brain.Screen.setFillColor("#39FF14");
   }
-
-
 }
-
+// ---------------------------------------------------------------- //
 if(AutoSelectorVal==4){
-
-  Brain.Screen.setFillColor(black);
-  Brain.Screen.setFont(monoXL);
-  Brain.Screen.setPenColor("#39FF14");
-  Brain.Screen.setCursor(3,10);
-  Brain.Screen.print("Red Positive");
-  Brain.Screen.setCursor(4,10);
-  Brain.Screen.print("RED+");
-  Brain.Screen.setFont(monoM); 
-  Brain.Screen.setFillColor("#39FF14");
-
+  if (!OtherCodes){
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.setFont(monoXL);
+    Brain.Screen.setPenColor("#39FF14");
+    Brain.Screen.setCursor(3,10);
+    Brain.Screen.print("Red Positive");
+    Brain.Screen.setCursor(4,10);
+    Brain.Screen.print("RED+");
+    Brain.Screen.setFont(monoM); 
+    Brain.Screen.setFillColor("#39FF14");
+  }
+  if (OtherCodes){
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.setFont(monoXL);
+    Brain.Screen.setPenColor("#39FF14");
+    Brain.Screen.setCursor(3,10);
+    Brain.Screen.print("Red Corner Clear");
+    Brain.Screen.setCursor(4,10);
+    Brain.Screen.print("RED+");
+    Brain.Screen.setFont(monoM); 
+    Brain.Screen.setFillColor("#39FF14");
+  }
+  
 }
-
+// ---------------------------------------------------------------- //
 if(AutoSelectorVal==5){
-
   if (!OtherCodes) {
-  Brain.Screen.setFillColor(black);
-  Brain.Screen.setFont(monoXL);
-  Brain.Screen.setPenColor("#39FF14");
-  Brain.Screen.setCursor(3,10);
-  Brain.Screen.print("Red Negative");
-  Brain.Screen.setCursor(4,10);
-  Brain.Screen.print("RED-");
-  Brain.Screen.setFont(monoM); 
-  Brain.Screen.setFillColor("#39FF14"); 
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.setFont(monoXL);
+    Brain.Screen.setPenColor("#39FF14");
+    Brain.Screen.setCursor(3,10);
+    Brain.Screen.print("Red Negative");
+    Brain.Screen.setCursor(4,10);
+    Brain.Screen.print("RED-");
+    Brain.Screen.setFont(monoM); 
+    Brain.Screen.setFillColor("#39FF14"); 
   }
-  
   if (OtherCodes) {
-  Brain.Screen.setFillColor(black);
-  Brain.Screen.setFont(monoXL);
-  Brain.Screen.setPenColor("#39FF14");
-  Brain.Screen.setCursor(3,10);
-  Brain.Screen.print("Six Red");
-  Brain.Screen.setCursor(4,10);
-  Brain.Screen.print("RED-");
-  Brain.Screen.setFont(monoM); 
-  Brain.Screen.setFillColor("#39FF14");
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.setFont(monoXL);
+    Brain.Screen.setPenColor("#39FF14");
+    Brain.Screen.setCursor(3,10);
+    Brain.Screen.print("Six Red");
+    Brain.Screen.setCursor(4,10);
+    Brain.Screen.print("RED-");
+    Brain.Screen.setFont(monoM); 
+    Brain.Screen.setFillColor("#39FF14");
   }
-
 }
-
+// ---------------------------------------------------------------- //
 if(AutoSelectorVal==6){
-  
   Brain.Screen.setFillColor(black);
   Brain.Screen.setFont(monoXL);
   Brain.Screen.setPenColor("#39FF14");
@@ -221,21 +236,18 @@ if(AutoSelectorVal==6){
   Brain.Screen.print("Solo AWP");
   Brain.Screen.setFont(monoM); 
   Brain.Screen.setFillColor("#39FF14");
-
   }
-
+// ---------------------------------------------------------------- //
 if(AutoSelectorVal==7){
-
-Brain.Screen.setFillColor(black);
-Brain.Screen.setFont(monoXL);
-Brain.Screen.setPenColor("#39FF14");
-Brain.Screen.setCursor(3,10);
-Brain.Screen.print("SKILLS");
-Brain.Screen.setCursor(4,10);
-Brain.Screen.print("SKILLS");
-Brain.Screen.setFont(monoM); 
-Brain.Screen.setFillColor("#39FF14");
-
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.setFont(monoXL);
+  Brain.Screen.setPenColor("#39FF14");
+  Brain.Screen.setCursor(3,10);
+  Brain.Screen.print("SKILLS");
+  Brain.Screen.setCursor(4,10);
+  Brain.Screen.print("SKILLS");
+  Brain.Screen.setFont(monoM); 
+  Brain.Screen.setFillColor("#39FF14");
 }
 
 Brain.Screen.setFillColor(black);
@@ -275,7 +287,8 @@ Zeroing(true,true);
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)// Blue 4 Ring
 {
-  blue_positive();
+  if (!OtherCodes) blue_positive();
+  else if (OtherCodes) blue_corner_clear();
 }
 
 if(AutoSelectorVal==2)// Blue Solo AWP
@@ -291,7 +304,8 @@ if(AutoSelectorVal==3)// Blue 5 / 6 Ring
 
 if(AutoSelectorVal==4)// Red 4 Ring
 {
-  red_positive();
+  if (!OtherCodes) red_positive();
+  else if (OtherCodes) red_corner_clear();
 }
 
 if(AutoSelectorVal==5)// Red 5 / 6 Ring
@@ -362,6 +376,7 @@ int ButtonPressingX,XTaskActiv;
 int ButtonPressingY,YTaskActiv;
 int ButtonPressingA,ATaskActiv;
 int ButtonPressingB,BTaskActiv;
+int ButtonPressingUp,UpTaskActiv;
 
 bool MacroToggle = false;
 int ArmDistance;
@@ -369,9 +384,9 @@ int ArmDistance;
 
 int PTask(void)
 {
-    while(true)
-    {
-      //Toggles Clamp
+  while(true)
+  {
+    // TOGGLES CLAMP ---------------------------------------------------------------
     if(XTaskActiv==0&&Controller1.ButtonX.pressing()&&ButtonPressingX==0)
     {
       ButtonPressingX=1;
@@ -379,7 +394,7 @@ int PTask(void)
       Clamp.set(true);
     }
 
-    else if(!Controller1.ButtonX.pressing())ButtonPressingX=0;
+    else if(!Controller1.ButtonX.pressing()) ButtonPressingX=0;
 
     else if(XTaskActiv==1&&Controller1.ButtonX.pressing()&&ButtonPressingX==0)
     {
@@ -387,8 +402,8 @@ int PTask(void)
       XTaskActiv=0;
       Clamp.set(false);
     }
-    //----------------------
-      // Toggles Doinker
+
+    // TOGGLES DOINKER ---------------------------------------------------------------
     if(YTaskActiv==0&&Controller1.ButtonB.pressing()&&ButtonPressingB==0)
     {
       ButtonPressingB=1;
@@ -396,7 +411,7 @@ int PTask(void)
       Doinker.set(true);
     }
 
-    else if(!Controller1.ButtonB.pressing())ButtonPressingB=0;
+    else if(!Controller1.ButtonB.pressing()) ButtonPressingB=0;
 
     else if(YTaskActiv==1&&Controller1.ButtonB.pressing()&&ButtonPressingB==0)
     {
@@ -404,7 +419,21 @@ int PTask(void)
       YTaskActiv=0;
       Doinker.set(false);
     }
+
+    // DRIVES BACKWARDS ---------------------------------------------------------------
+    if(YTaskActiv==0&&Controller1.ButtonUp.pressing()&&ButtonPressingUp==0)
+    {
+      ButtonPressingUp=1;
     }
+
+    else if(!Controller1.ButtonUp.pressing()) 
+    {
+      PIDDataSet TestPara={1.5,0.1,0.15};
+      MoveEncoderPID(TestPara,100,1.1,0.2,0,true);
+      ButtonPressingUp=0;
+    }
+
+  }
 }
 
 
@@ -455,8 +484,6 @@ int BTask(void) {
       BTaskActiv=0;
       RunArms(0);
     }
-
-
   }
   return 0;
 }
@@ -464,7 +491,7 @@ int BTask(void) {
 
 int MogoTask(void) {
 
-  if (Brain.Timer.time(msec) == 5000); {
+  if (Brain.Timer.time(msec) == 5000) {
     Controller1.rumble("- - -");
   }
   return 0;
