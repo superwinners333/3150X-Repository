@@ -10,8 +10,8 @@ void red_negative()
 { // NEGATIVE IS TO THE LEFT
     PIDDataSet TestPara={1.5,0.1,0.15};
 
-    TurnMaxTimePID(TestPara, -34, 0.4, true);
-    MoveEncoderPID(TestPara,-50,1.1,0.2,-34,true);
+    TurnMaxTimePID(TestPara, -36, 0.4, true);
+    MoveEncoderPID(TestPara,-50,1.3,0.2,-36,true);
     RunArms(100);
     wait(550,msec);
     RunArms(0);

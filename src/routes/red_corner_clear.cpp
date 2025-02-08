@@ -27,24 +27,41 @@ void red_corner_clear()
     TurnMaxTimePID(TestPara, 50, 0.8, false);
     Pistake.set(true);
     RunRoller(100);
-    MoveEncoderPID(TestPara,-100,43,0.2,50,false); // grabs first ring
+    MoveEncoderPID(TestPara,-100,19,0.3,50,false); // grabs first ring
     Pistake.set(false);
-    wait(200,msec);
-    MoveEncoderPID(TestPara,100,43,0.2,50,false); // drives away
-    wait(15,msec);
-    TurnMaxTimePID(TestPara, -105, 0.5, false); // turns to next ring
-    MoveEncoderPID(TestPara,-100,34,0.2,-105,false); // drives into next ring
-    wait(50,msec);
-    
-    Doinker.set(true);
-    MoveEncoderPID(TestPara, -100,70,0.6,-25,true); // drives into corner
+    wait(220,msec);
+    MoveEncoderPID(TestPara,100,18,0.2,50,false); // drives away
+    wait(20,msec);
+    TurnMaxTimePID(TestPara, -93, 0.3, false); // turns to next ring
+    MoveEncoderPID(TestPara,-100,34,0.5,-93,false); // drives into next ring
 
-    TurnMaxTimePID(TestPara, 30, 0.5, false); // turns left and right to remove rings from corners
-    TurnMaxTimePID(TestPara, -10, 0.5, false);
-    TurnMaxTimePID(TestPara, 30, 0.5, false);
-    TurnMaxTimePID(TestPara, 0, 0.5, false);
-    Doinker.set(false);
+    // MoveEncoderPID(TestPara,100,30,0.4,-130,false);  // drives away
+    wait(15,msec);
+    TurnMaxTimePID(TestPara, -15, 0.6, false); // turns to face corner
+
+    wait(20,msec);
+    // Doinker.set(true);
+    MoveEncoderPID(TestPara,-75,78,0.5,-20,true); // moves to corner ring
+    RunRoller(-100);
+    MoveEncoderPID(TestPara,-75,4,0.5,-20,true);
+
+    // TurnMaxTimePID(TestPara, 40, 0.2, false); // sweeps
+    // Doinker.set(false);
+    // TurnMaxTimePID(TestPara, -30, 0.4, false);
+
+    wait(100,msec);
+    RunRoller(100);
+
     wait(50,msec);
-    MoveEncoderPID(TestPara, 100,20,0.2,0,false); // drives away from corner
+    MoveEncoderPID(TestPara,-100,7,0.3,-30,true); // runs into corner more
+
+    wait(70,msec);
+    MoveEncoderPID(TestPara,15,8,0.4,-30,true); // drives away from corner
+    wait(20,msec);
+
+    Doinker.set(true);
+    MoveEncoderPID(TestPara,-100,4,0.4,-20,true);
+    TurnMaxTimePID(TestPara, 30, 0.4, false);
+    Doinker.set(false);
 
 }

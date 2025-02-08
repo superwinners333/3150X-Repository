@@ -23,16 +23,16 @@ void six_red()
 // CENTER RINGS CODE
     TurnMaxTimePID(TestPara, 139, 0.4, false); // turns to face first center ring (2)
     RunRoller(100); // spins intake forward
-    MoveEncoderPID(TestPara, -100, -26.5, 0.4, 139 ,true); // drives towards first center ring (2) and intakes it 
+    MoveEncoderPID(TestPara, -100, -28, 0.4, 139 ,true); // drives towards first center ring (2) and intakes it 
     wait(140,msec);
-    MoveEncoderPID(TestPara, -90, -19, 0.7, 88, true); // moves to second center ring (3) 
+    MoveEncoderPID(TestPara, -80, -20, 0.7, 88, true); // moves to second center ring (3) 
     wait(130,msec);
 
 // STACKED BOTTOM RING CODE (4)
     // RunRoller(0);
-    TurnMaxTimePID(TestPara, -19, 0.6, false); // rotates to stack bottom ring (4)
+    TurnMaxTimePID(TestPara, -19.3, 0.7, false); // rotates to stack bottom ring (4)
     RunRoller(0);
-    MoveEncoderPID(TestPara, -100, -52, 0.4, -19, true); // goes to stack bottom ring (4)
+    MoveEncoderPID(TestPara, -100, -52, 0.5, -19.3, true); // goes to stack bottom ring (4)
     RunRoller(100);
 
 // STACKED TOP RING CODE (5)
@@ -46,8 +46,8 @@ void six_red()
 
 // TOUCHING TOWER CODE
     // MoveEncoderPID(TestPara, 100, -2, 0.4, 90, true); // drives backwards
-    TurnMaxTimePID(TestPara, 180, 0.4, false); // turns towards tower
-    MoveEncoderPID(TestPara, -100, -17, 0.4, 180, false); // goes towards tower
+    TurnMaxTimePID(TestPara, -170, 0.4, false); // turns towards tower
+    MoveEncoderPID(TestPara, -100, -17, 0.4, -170, false); // goes towards tower
     RunArms(100);
     wait(800,msec);
     StopArms();
