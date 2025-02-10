@@ -64,8 +64,8 @@ void prog_skills()
     wait(90,msec);
     MoveEncoderPID(TestPara, 75, -18, 0.8, 180,false); // backs up
     wait(50,msec);
-    TurnMaxTimePID(TestPara, 140, 0.9, false); // turns to side ring
-    MoveEncoderPID(TestPara, -90, -16, 0.5, 140,true); // picks up side ring 
+    TurnMaxTimePID(TestPara, 150, 0.9, false); // turns to side ring
+    MoveEncoderPID(TestPara, -90, -16, 0.5, 150,true); // picks up side ring 
     wait(90,msec);
 
     TurnMaxTimePID(TestPara, -18, 0.9, true); // turns so mogo faces corner
@@ -105,9 +105,9 @@ void prog_skills()
     wait(120,msec);
 
     RunRoller(0);
-    wait(20,msec);
+    wait(50,msec);
     RunRoller(100); // stutters intake
-    wait(30,msec);
+    wait(50,msec);
 
     RunRoller(0);
     Move(-20,-20); // continuously drives into bot
@@ -174,7 +174,7 @@ void prog_skills()
     MoveEncoderPID(TestPara, -100, -31, 0.4, 90, true); // grabs ring
 
     TurnMaxTimePID(TestPara, 0, 0.6, false); // turns to the two rings in a row
-    MoveEncoderPID(TestPara, -100, -58, 0.4, 0, false); // grabs both of the rings
+    MoveEncoderPID(TestPara, -80, -58, 0.4, 0, false); // grabs both of the rings
     wait(80,msec);
     MoveEncoderPID(TestPara, 80, -7, 0.4, 0, false); // backs up
     wait(50,msec);

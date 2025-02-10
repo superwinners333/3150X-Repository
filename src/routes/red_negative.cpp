@@ -27,31 +27,34 @@ void red_negative()
     // CENTER RINGS CODE
     TurnMaxTimePID(TestPara, 140, 0.4, true); // turns to face first center ring (2)
     RunRoller(100); // spins intake forward
-    MoveEncoderPID(TestPara, -100, -31, 0.4, 140 ,true); // drives towards first center ring (2) and intakes it 
+    MoveEncoderPID(TestPara, -100, -23, 0.4, 140 ,true); // drives towards first center ring (2) and intakes it 
     wait(140,msec);
     // TurnMaxTimePID(TestPara, -90, 0.4, true); // turns to second center ring (3)
-    MoveEncoderPID(TestPara, -100, -20, 0.4, 86, true); // moves to second center ring (3) 
-    wait(130,msec);
+    MoveEncoderPID(TestPara, -100, -12, 0.6, 86, true); // moves to second center ring (3) 
+    wait(150,msec);
 
 // STACKED BOTTOM RING CODE (4)
     // RunRoller(0);
     TurnMaxTimePID(TestPara, -19, 0.7, true); // rotates to stack bottom ring (4)
+    // wait(100,msec);
+    MoveEncoderPID(TestPara, -100, -16, 0.4, -19, true);
     RunRoller(0);
-    MoveEncoderPID(TestPara, -100, -60, 0.4, -19, true); // goes to stack bottom ring (4)
+    MoveEncoderPID(TestPara, -100, -15, 0.4, -19, false); // goes to stack bottom ring (4) // 60 original distance
     RunRoller(100);
 
 // STACKED TOP RING CODE (5)
     wait(300,msec);
     TurnMaxTimePID(TestPara, -85, 0.4, true); // rotates to stack top ring (5)
-    MoveEncoderPID(TestPara, -100, -20, 0.4, -85, true); // moves towards stack top ring (5)
+    MoveEncoderPID(TestPara, -100, -15, 0.4, -85, true); // moves towards stack top ring (5)
     Pistake.set(true); // activates pistake
-    MoveEncoderPID(TestPara, -100, -22, 0.4, -85, true); // moves towards stack top ring (5)
-    wait(100,msec);
-    Pistake.set(false);
+    MoveEncoderPID(TestPara, -100, -16, 0.4, -85, true); // moves towards stack top ring (5)
+    wait(130,msec);
+    // Pistake.set(false);
 
 // TOUCHING TOWER CODE
-    TurnMaxTimePID(TestPara, 180, 0.4, true); // turns towards tower
-    MoveEncoderPID(TestPara, -100, -17, 0.4, 180, false); // goes towards tower
+    TurnMaxTimePID(TestPara, -170, 0.4, true); // turns towards tower
+    MoveEncoderPID(TestPara, -100, -17, 0.4, -170, false); // goes towards tower
+    Pistake.set(false);
     RunArms(100);
     wait(800,msec);
     StopArms();

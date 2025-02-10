@@ -27,13 +27,13 @@ void red_corner_clear()
     TurnMaxTimePID(TestPara, 50, 0.8, false);
     Pistake.set(true);
     RunRoller(100);
-    MoveEncoderPID(TestPara,-100,19,0.3,50,false); // grabs first ring
+    MoveEncoderPID(TestPara,-100,17,0.3,50,false); // grabs first ring
     Pistake.set(false);
-    wait(220,msec);
-    MoveEncoderPID(TestPara,100,18,0.2,50,false); // drives away
+    wait(240,msec);
+    MoveEncoderPID(TestPara,100,16,0.2,50,false); // drives away
     wait(20,msec);
-    TurnMaxTimePID(TestPara, -93, 0.3, false); // turns to next ring
-    MoveEncoderPID(TestPara,-100,34,0.5,-93,false); // drives into next ring
+    TurnMaxTimePID(TestPara, -100, 0.3, false); // turns to next ring
+    MoveEncoderPID(TestPara,-100,34,0.5,-100,false); // drives into next ring
 
     // MoveEncoderPID(TestPara,100,30,0.4,-130,false);  // drives away
     wait(15,msec);
@@ -41,9 +41,9 @@ void red_corner_clear()
 
     wait(20,msec);
     // Doinker.set(true);
-    MoveEncoderPID(TestPara,-75,78,0.5,-20,true); // moves to corner ring
+    MoveEncoderPID(TestPara,-75,55,0.5,-20,true); // moves to corner ring
     RunRoller(-100);
-    MoveEncoderPID(TestPara,-75,4,0.5,-20,true);
+    MoveEncoderPID(TestPara,-75,14,0.5,-20,true);
 
     // TurnMaxTimePID(TestPara, 40, 0.2, false); // sweeps
     // Doinker.set(false);
@@ -56,12 +56,18 @@ void red_corner_clear()
     MoveEncoderPID(TestPara,-100,7,0.3,-30,true); // runs into corner more
 
     wait(70,msec);
-    MoveEncoderPID(TestPara,15,8,0.4,-30,true); // drives away from corner
+    MoveEncoderPID(TestPara,15,9,0.4,-30,true); // drives away from corner
     wait(20,msec);
 
     Doinker.set(true);
-    MoveEncoderPID(TestPara,-100,4,0.4,-20,true);
-    TurnMaxTimePID(TestPara, 30, 0.4, false);
+    wait(40,msec);
+    MoveEncoderPID(TestPara,-100,3,0.4,-20,true);
+    wait(50,msec);
+    TurnMaxTimePID(TestPara, 30,0.4, false);
     Doinker.set(false);
+    wait(50,msec);
+    TurnMaxTimePID(TestPara, 180, 0.4, false);
+    // Clamp.set(false);
+    MoveEncoderPID(TestPara,-100,4,0.4,180,false);
 
 }
