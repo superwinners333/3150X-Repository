@@ -355,17 +355,6 @@ int ATask(void)
   {
     pow=((Controller1.ButtonR2.pressing()-Controller1.ButtonR1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
     RunRoller(-pow);
-    
-    // pow2=((Controller1.ButtonL2.pressing()-Controller1.ButtonL1.pressing())*100);//Calculate arm power, if button pressed, button.pressing returns 1
-    // if (pow2 == 0)
-    // {
-    //   // Wall.setStopping(hold);
-    //   RunArms(0);
-    // }
-    // else
-    // {
-    //   RunArms(-pow2);
-    // }
 
   //RunPuncher((Controller1.ButtonB.pressing())*100);
   }
@@ -447,19 +436,34 @@ int BTask(void) {
       if(abs(LiftSensor.position(degrees)) < 32) {
         RunArms(60);
         if(abs(LiftSensor.position(degrees)) > 25) {
-          BTaskActiv = 0;
+          BTaskActiv = 2;
         }
       } 
       else if(abs(LiftSensor.position(degrees)) > 25) {
         RunArms(-60);
         if(abs(LiftSensor.position(degrees)) <  32) {
-          BTaskActiv = 0;
+          BTaskActiv = 2;
         }
       } 
     }
     else {
+      // Continuous macro code for arms
+      if (BTaskActiv == 2)
+      {
+        // makes sure arms is always in the correct position
+        if(abs(LiftSensor.position(degrees)) < 27) {
+          RunArms(10);
+        } 
+        else if(abs(LiftSensor.position(degrees)) > 33) {
+          RunArms(-10);
+        }
+
+      }
+      
+      // OP control for the arms
       pow1=(Controller1.ButtonL1.pressing()-Controller1.ButtonL2.pressing())*100;
       if(pow1==0) {
+        BTaskActiv = 0;
         Wall.setStopping(hold);
         Wall.stop();
       }
