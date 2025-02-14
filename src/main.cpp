@@ -433,45 +433,41 @@ int BTask(void) {
 
     if(BTaskActiv==1) {
       
-      if(abs(LiftSensor.position(degrees)) < 32) {
+      if(abs(LiftSensor.position(degrees)) < 23) {
         RunArms(60);
-        if(abs(LiftSensor.position(degrees)) > 25) {
-          BTaskActiv = 2;
+        if(abs(LiftSensor.position(degrees)) > 16) {
+          BTaskActiv = 0;
         }
       } 
-      else if(abs(LiftSensor.position(degrees)) > 25) {
+      else if(abs(LiftSensor.position(degrees)) > 16) {
         RunArms(-60);
-        if(abs(LiftSensor.position(degrees)) <  32) {
-          BTaskActiv = 2;
+        if(abs(LiftSensor.position(degrees)) <  23) {
+          BTaskActiv = 0;
         }
       } 
     }
     else {
-      // Continuous macro code for arms
-      if (BTaskActiv == 2)
-      {
-        // makes sure arms is always in the correct position
-        if(abs(LiftSensor.position(degrees)) < 27) {
-          RunArms(10);
-        } 
-        else if(abs(LiftSensor.position(degrees)) > 33) {
-          RunArms(-10);
-        }
-
-      }
       
       // OP control for the arms
       pow1=(Controller1.ButtonL1.pressing()-Controller1.ButtonL2.pressing())*100;
       if(pow1==0) {
-        BTaskActiv = 0;
-        Wall.setStopping(hold);
-        Wall.stop();
+        if (abs(LiftSensor.position(degrees)) < 50 && abs(LiftSensor.position(degrees)) > 17){
+          RunArms(14);
+        }
+        else{
+          Wall.setStopping(hold);
+          Wall.stop(); 
+        }
+          
+        
+        
       }
       if((pow1 < 0 && abs(LiftSensor.position(degrees)) < 4) || (pow1 > 0 && abs(LiftSensor.position(degrees)) > 250)){
         Wall.setStopping(hold);
         Wall.stop();
       }
       else {
+        BTaskActiv = 0;
         RunArms(pow1);
       }
     }
