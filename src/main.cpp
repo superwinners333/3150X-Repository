@@ -433,15 +433,15 @@ int BTask(void) {
 
     if(BTaskActiv==1) {
       
-      if(abs(LiftSensor.position(degrees)) < 23) {
+      if(abs(LiftSensor.position(degrees)) < 22) {
         RunArms(60);
-        if(abs(LiftSensor.position(degrees)) > 16) {
+        if(abs(LiftSensor.position(degrees)) > 15) {
           BTaskActiv = 0;
         }
       } 
-      else if(abs(LiftSensor.position(degrees)) > 16) {
+      else if(abs(LiftSensor.position(degrees)) > 15) {
         RunArms(-60);
-        if(abs(LiftSensor.position(degrees)) <  23) {
+        if(abs(LiftSensor.position(degrees)) <  22) {
           BTaskActiv = 0;
         }
       } 
@@ -452,14 +452,13 @@ int BTask(void) {
       pow1=(Controller1.ButtonL1.pressing()-Controller1.ButtonL2.pressing())*100;
       if(pow1==0) {
         if (abs(LiftSensor.position(degrees)) < 50 && abs(LiftSensor.position(degrees)) > 17){
-          RunArms(14);
+          // RunArms(14);
         }
         else{
           Wall.setStopping(hold);
           Wall.stop(); 
         }
           
-        
         
       }
       if((pow1 < 0 && abs(LiftSensor.position(degrees)) < 4) || (pow1 > 0 && abs(LiftSensor.position(degrees)) > 250)){
