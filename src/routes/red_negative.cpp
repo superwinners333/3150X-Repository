@@ -25,29 +25,31 @@ void red_negative()
     RunArms(0);
 
     // CENTER RINGS CODE
-    TurnMaxTimePID(TestPara, 140, 0.4, true); // turns to face first center ring (2)
+    TurnMaxTimePID(TestPara, 139, 0.4, true); // turns to face first center ring (2)
     RunRoller(100); // spins intake forward
-    MoveEncoderPID(TestPara, -100, -23, 0.4, 140 ,true); // drives towards first center ring (2) and intakes it 
+    MoveEncoderPID(TestPara, -100, -28.4, 0.4, 139 ,true); // drives towards first center ring (2) and intakes it 
     wait(140,msec);
     // TurnMaxTimePID(TestPara, -90, 0.4, true); // turns to second center ring (3)
-    MoveEncoderPID(TestPara, -100, -12, 0.6, 86, true); // moves to second center ring (3) 
-    wait(150,msec);
+    MoveEncoderPID(TestPara, -100, -16, 0.6, 88, true); // moves to second center ring (3) 
+    wait(180,msec);
 
 // STACKED BOTTOM RING CODE (4)
     // RunRoller(0);
     TurnMaxTimePID(TestPara, -19, 0.7, true); // rotates to stack bottom ring (4)
     // wait(100,msec);
-    MoveEncoderPID(TestPara, -100, -16, 0.4, -19, true);
+    MoveEncoderPID(TestPara, -100, -17, 0.2, -19, true);
+    wait(150,msec);
     RunRoller(0);
-    MoveEncoderPID(TestPara, -100, -15, 0.4, -19, false); // goes to stack bottom ring (4) // 60 original distance
+    MoveEncoderPID(TestPara, -100, -23, 0.2, -19, false);
+    MoveEncoderPID(TestPara, 100, -2, 0.2, -19, false); // goes to stack bottom ring (4) // 60 original distance
     RunRoller(100);
 
 // STACKED TOP RING CODE (5)
     wait(300,msec);
-    TurnMaxTimePID(TestPara, -85, 0.4, true); // rotates to stack top ring (5)
-    MoveEncoderPID(TestPara, -100, -15, 0.4, -85, true); // moves towards stack top ring (5)
+    TurnMaxTimePID(TestPara, -65, 0.4, true); // rotates to stack top ring (5)
+    MoveEncoderPID(TestPara, -100, -17, 0.4, -65, true); // moves towards stack top ring (5)
     Pistake.set(true); // activates pistake
-    MoveEncoderPID(TestPara, -100, -16, 0.4, -85, true); // moves towards stack top ring (5)
+    MoveEncoderPID(TestPara, -100, -24, 0.4, -65, true); // moves towards stack top ring (5)
     wait(130,msec);
     // Pistake.set(false);
 

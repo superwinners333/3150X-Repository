@@ -16,7 +16,7 @@ void blue_positive()
     RunArms(100);
     MoveEncoderPID(TestPara,-50,1.4,0.2,-36,true);
 
-    // wait(30,msec);
+    // wait(30,msec); 
 
     wait(175,msec);
     RunArms(0);

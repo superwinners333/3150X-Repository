@@ -41,18 +41,11 @@ void red_positive() // original
     MoveEncoderPID(TestPara,-80,84,0.5,-60,true); // moves to corner ring
     wait(50,msec);
     RunRoller(100);
-    MoveEncoderPID(TestPara,-100,3,0.3,-60,true); // runs into corner more
-    // wait(50,msec);
-    // MoveEncoderPID(TestPara,65,1,0.4,-60,true); // drive out slightly
-    // MoveEncoderPID(TestPara,-100,1.4,0.3,-60,true); // runs into corner more
+    MoveTimePID(TestPara, 100, 0.4, 0.3, -60, true); // runs into corner more
     
-
     wait(70,msec);
     MoveEncoderPID(TestPara,15,13,0.4,-60,true); // drives away from corner
     wait(20,msec);
-
-    // MoveEncoderPID(TestPara,-100,4,0.4,-60,false); // goes towards corner for a moment
-    // MoveEncoderPID(TestPara,100,4,0.4,-60,false); // backs away
 
     MoveEncoderPID(TestPara,100,13,0.4,-60,true); // leaves corner
     wait(70,msec);

@@ -26,11 +26,12 @@ void six_red()
     MoveEncoderPID(TestPara, -100, -28, 0.4, 139 ,true); // drives towards first center ring (2) and intakes it 
     wait(140,msec);
     MoveEncoderPID(TestPara, -80, -20, 0.7, 88, true); // moves to second center ring (3) 
-    wait(130,msec);
+    wait(200,msec);
 
 // STACKED BOTTOM RING CODE (4)
     // RunRoller(0);
     TurnMaxTimePID(TestPara, -19.3, 0.7, false); // rotates to stack bottom ring (4)
+    wait(70,msec);
     RunRoller(0);
     MoveEncoderPID(TestPara, -100, -52, 0.5, -19.3, true); // goes to stack bottom ring (4)
     RunRoller(100);
@@ -39,6 +40,9 @@ void six_red()
     wait(300,msec);
     TurnMaxTimePID(TestPara, -85, 0.4, true); // rotates to stack top ring (5)
     MoveEncoderPID(TestPara, -100, -17, 0.4, -85, true); // moves towards stack top ring (5)
+
+    /* stuff below is temp commented
+
     Pistake.set(true); // activates pistake
     MoveEncoderPID(TestPara, -100, -18, 0.4, -85, true); // moves towards stack top ring (5)
     wait(100,msec);
@@ -52,4 +56,6 @@ void six_red()
     wait(800,msec);
     StopArms();
 
+    */
+   
 }

@@ -24,16 +24,17 @@ void six_blue() // original code
 // CENTER RINGS CODE
     TurnMaxTimePID(TestPara, -139, 0.4, false); // turns to face first center ring (2)
     RunRoller(100); // spins intake forward
-    MoveEncoderPID(TestPara, -100, -26.5, 0.4, -139 ,true); // drives towards first center ring (2) and intakes it 
+    MoveEncoderPID(TestPara, -100, -28, 0.4, -139 ,true); // drives towards first center ring (2) and intakes it 
     wait(140,msec);
-    MoveEncoderPID(TestPara, -90, -19, 0.7, -88, true); // moves to second center ring (3) 
-    wait(130,msec);
+    MoveEncoderPID(TestPara, -90, -20, 0.7, -88, true); // moves to second center ring (3) 
+    wait(200,msec);
 
 // STACKED BOTTOM RING CODE (4)
     // RunRoller(0);
-    TurnMaxTimePID(TestPara, 19, 0.6, false); // rotates to stack bottom ring (4)
+    TurnMaxTimePID(TestPara, 20, 0.6, false); // rotates to stack bottom ring (4)
+    wait(90,msec);
     RunRoller(0);
-    MoveEncoderPID(TestPara, -100, -52, 0.4, 19, true); // goes to stack bottom ring (4)
+    MoveEncoderPID(TestPara, -100, -52, 0.4, 20, true); // goes to stack bottom ring (4)
     RunRoller(100);
 
 // CORNER RINGS
@@ -50,9 +51,12 @@ void six_blue() // original code
 
 
 // STACKED TOP RING CODE (5)
-    wait(300,msec);
+    wait(250,msec);
     TurnMaxTimePID(TestPara, 85, 0.4, true); // rotates to stack top ring (5)
     MoveEncoderPID(TestPara, -100, -17, 0.4, 85, true); // moves towards stack top ring (5)
+
+    /* stuff below is temp commented
+
     Pistake.set(true); // activates pistake
     MoveEncoderPID(TestPara, -100, -18, 0.4, 85, true); // moves towards stack top ring (5)
     wait(100,msec);
@@ -65,5 +69,7 @@ void six_blue() // original code
     RunArms(100);
     wait(800,msec);
     StopArms();
+
+    */
     
 }

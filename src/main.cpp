@@ -433,15 +433,15 @@ int BTask(void) {
 
     if(BTaskActiv==1) {
       
-      if(abs(LiftSensor.position(degrees)) < 22) {
+      if(abs(LiftSensor.position(degrees)) < 20.25) {
         RunArms(60);
-        if(abs(LiftSensor.position(degrees)) > 15) {
+        if(abs(LiftSensor.position(degrees)) > 13.25) {
           BTaskActiv = 0;
         }
       } 
-      else if(abs(LiftSensor.position(degrees)) > 15) {
+      else if(abs(LiftSensor.position(degrees)) > 13.25) {
         RunArms(-60);
-        if(abs(LiftSensor.position(degrees)) <  22) {
+        if(abs(LiftSensor.position(degrees)) <  20.25) {
           BTaskActiv = 0;
         }
       } 
@@ -451,8 +451,8 @@ int BTask(void) {
       // OP control for the arms
       pow1=(Controller1.ButtonL1.pressing()-Controller1.ButtonL2.pressing())*100;
       if(pow1==0) {
-        if (abs(LiftSensor.position(degrees)) < 50 && abs(LiftSensor.position(degrees)) > 17){
-          // RunArms(14);
+        if (abs(LiftSensor.position(degrees)) < 25 && abs(LiftSensor.position(degrees)) > 14){
+          RunArms(12);
         }
         else{
           Wall.setStopping(hold);
