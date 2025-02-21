@@ -19,6 +19,7 @@ extern motor PU;
 extern inertial Gyro;
 
 extern rotation LiftSensor;
+extern optical Csen;
 extern double LiftAngle;
 
 extern const double wheelDiam;

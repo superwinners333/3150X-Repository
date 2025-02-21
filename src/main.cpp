@@ -347,10 +347,12 @@ int DriveTask(void){
 return 0;
 }
 int V;
+
+
+
 int ATask(void)
 {
   double pow;
-  double pow2;
     while(true)
   {
     pow=((Controller1.ButtonR2.pressing()-Controller1.ButtonR1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
@@ -361,6 +363,72 @@ int ATask(void)
   return 0;
 }
 
+float olddegree = 0;
+int Eject = 0;
+int pauser = 0;
+
+int ITask(void) {
+  
+  double pow;
+  using namespace std;
+
+  while (true) {
+
+      // Improved color detection logic
+      Csen.setLight(ledState::on);
+      Csen.setLightPower(100, percent);
+      int hue = Csen.hue();
+      bool isRed = (hue >= 0 && hue <= 48);
+
+      // Check if an object is detected and it's the desired color
+      if (isRed && Csen.isNearObject() == 1 && Eject == 0) {
+        olddegree = Roller.position(degrees) + 410;
+        Eject = 1;
+        pauser = 1;
+        std::cout << Roller.position(degrees) << endl;
+        std::cout << olddegree << endl;
+      }
+
+      if (Eject == 0) {
+        pow = ((Controller1.ButtonR2.pressing() - Controller1.ButtonR1.pressing()) * 100);
+        RunRoller(-pow);
+      }
+
+      // Eject mechanism to "yeet" the ring
+      while (Eject == 1) {
+        // olddegree = Roller.position(degrees) + 700;
+        while (Roller.position(degrees) < olddegree){
+          RunRoller(100);
+        }
+        if (pauser == 1){
+          olddegree = Roller.position(degrees) - 170;
+          pauser = 0;
+        }
+        
+        std::cout << Roller.position(degrees) << endl;
+        std::cout << olddegree << endl;
+
+        while (Roller.position(degrees) > olddegree && Eject == 1){
+          RunRoller(-20);
+          if (Roller.position(degrees) <= olddegree) {
+            RunRoller(0);
+            Eject = 0;
+          }
+        }
+        
+      }
+
+      // std::cout << Roller.position(degrees) << endl;
+      // std::cout << olderdegree << endl;
+
+      // Small delay to prevent CPU overload
+      wait(10, msec);
+  }
+  return 0;
+}
+// -----------------------------------------------------------------------------------------------
+
+
 int ButtonPressingX,XTaskActiv;
 int ButtonPressingY,YTaskActiv;
 int ButtonPressingA,ATaskActiv;
@@ -370,6 +438,7 @@ int ButtonPressingUp,UpTaskActiv;
 bool MacroToggle = false;
 int ArmDistance;
 
+bool redsort = false;
 
 int PTask(void)
 {
@@ -393,24 +462,41 @@ int PTask(void)
     }
 
     // TOGGLES DOINKER ---------------------------------------------------------------
-    if(YTaskActiv==0&&Controller1.ButtonB.pressing()&&ButtonPressingB==0)
+    if(BTaskActiv==0&&Controller1.ButtonB.pressing()&&ButtonPressingB==0)
     {
       ButtonPressingB=1;
-      YTaskActiv=1;
+      BTaskActiv=1;
       Doinker.set(true);
     }
 
     else if(!Controller1.ButtonB.pressing()) ButtonPressingB=0;
 
-    else if(YTaskActiv==1&&Controller1.ButtonB.pressing()&&ButtonPressingB==0)
+    else if(BTaskActiv==1&&Controller1.ButtonB.pressing()&&ButtonPressingB==0)
     {
       ButtonPressingB=1;
-      YTaskActiv=0;
+      BTaskActiv=0;
       Doinker.set(false);
     }
 
+    // TOGGLES COLOUR SORT ---------------------------------------------------------------
+    if(UpTaskActiv==0&&Controller1.ButtonUp.pressing()&&ButtonPressingUp==0)
+    {
+      ButtonPressingUp=1;
+      UpTaskActiv=1;
+      redsort = true;
+    }
+
+    else if(!Controller1.ButtonUp.pressing()) ButtonPressingUp=0;
+
+    else if(UpTaskActiv==1&&Controller1.ButtonUp.pressing()&&ButtonPressingUp==0)
+    {
+      ButtonPressingUp=1;
+      UpTaskActiv=0;
+      redsort = false;
+    }
+
     // DRIVES BACKWARDS ---------------------------------------------------------------
-    // if(YTaskActiv==0&&Controller1.ButtonUp.pressing()&&ButtonPressingUp==0)
+    // if(UpTaskActiv==0&&Controller1.ButtonUp.pressing()&&ButtonPressingUp==0)
     // {
     //   ButtonPressingUp=1;
     // }
@@ -517,11 +603,11 @@ void usercontrol(void) {
     // values based on feedback from the joysticks.
     
     task Dtask=task(DriveTask);
-    task Atask=task(ATask);
+    // task Atask=task(ATask);
+    task Itask=task(ITask);
     task Ptask=task(PTask);
     task Btask=task(BTask);
 
-    // task Mtask=task(MogoTask);
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
@@ -552,7 +638,7 @@ int main() {
     wait(100, msec);
     
     // std::cout << "BLOU" << endl;
-    std::cout << LiftSensor.position(degrees) << endl;
+    // std::cout << LiftSensor.position(degrees) << endl;
     
 
   }

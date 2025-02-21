@@ -110,7 +110,18 @@ void RunRoller(int val)
 {
 Roller.setMaxTorque(100,percent);
 Roller.spin(forward,(double)val/100.0*12,volt);
+}
 
+void BStopRoller()
+{
+  Roller.setStopping(brake);
+  Roller.stop();
+}
+
+void CStopRoller()
+{
+  Roller.setStopping(coast);
+  Roller.stop();
 }
 
 int RunArms(int val)
@@ -141,16 +152,16 @@ void Macro(void)
 
   while(MacroActiv==1) {
     
-    if(abs(LiftSensor.position(degrees)) < 23) { // 32
+    if(abs(LiftSensor.position(degrees)) < 22) { // 32
       RunArms(60);
-      if(abs(LiftSensor.position(degrees)) > 16) { // 25
+      if(abs(LiftSensor.position(degrees)) > 15) { // 25
         MacroActiv = 0;
         StopArms();
       }
     } 
-    else if(abs(LiftSensor.position(degrees)) > 23) { // 25
+    else if(abs(LiftSensor.position(degrees)) > 22) { // 25
       RunArms(-60);
-      if(abs(LiftSensor.position(degrees)) <  16) { // 32
+      if(abs(LiftSensor.position(degrees)) <  15) { // 32
         MacroActiv = 0;
         StopArms();
       }

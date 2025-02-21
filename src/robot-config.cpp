@@ -25,6 +25,7 @@ digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
 
 rotation LiftSensor = rotation(PORT15, false);
+optical Csen = optical(PORT6);
 
 inertial Gyro = inertial(PORT2);
 // Important variables
