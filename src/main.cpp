@@ -49,7 +49,7 @@ void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
 Gyro.calibrate();
-LiftSensor.setPosition(0.0, degrees);
+LiftSensor.setPosition(1.0, degrees);
 
 //Ensure Robot Launch Position is set before auto proceeds, once plugged into field control,
 //start program and do not temper bot under all circumstances
@@ -366,23 +366,25 @@ int ATask(void)
 float olddegree = 0;
 int Eject = 0;
 int pauser = 0;
+bool redsort = false;
 
 int ITask(void) {
   
   double pow;
   using namespace std;
 
-  while (true) {
+  while (redsort) {
 
       // Improved color detection logic
       Csen.setLight(ledState::on);
       Csen.setLightPower(100, percent);
       int hue = Csen.hue();
       bool isRed = (hue >= 0 && hue <= 48);
+      bool isBlue = (hue >= 205 && hue <= 220);
 
       // Check if an object is detected and it's the desired color
       if (isRed && Csen.isNearObject() == 1 && Eject == 0) {
-        olddegree = Roller.position(degrees) + 410;
+        olddegree = Roller.position(degrees) + 440; // 410
         Eject = 1;
         pauser = 1;
         std::cout << Roller.position(degrees) << endl;
@@ -395,9 +397,9 @@ int ITask(void) {
       }
 
       // Eject mechanism to "yeet" the ring
-      while (Eject == 1) {
+      while (Eject == 1 && redsort) {
         // olddegree = Roller.position(degrees) + 700;
-        while (Roller.position(degrees) < olddegree){
+        while (Roller.position(degrees) < olddegree && redsort){
           RunRoller(100);
         }
         if (pauser == 1){
@@ -408,14 +410,14 @@ int ITask(void) {
         std::cout << Roller.position(degrees) << endl;
         std::cout << olddegree << endl;
 
-        while (Roller.position(degrees) > olddegree && Eject == 1){
+        while (Roller.position(degrees) > olddegree && Eject == 1 && redsort){
           RunRoller(-20);
-          if (Roller.position(degrees) <= olddegree) {
+          if (Roller.position(degrees) <= olddegree || redsort == false) {
             RunRoller(0);
             Eject = 0;
           }
         }
-        
+        // if (redsort) Eject = 0;
       }
 
       // std::cout << Roller.position(degrees) << endl;
@@ -438,7 +440,7 @@ int ButtonPressingUp,UpTaskActiv;
 bool MacroToggle = false;
 int ArmDistance;
 
-bool redsort = false;
+// bool redsort = true;
 
 int PTask(void)
 {
@@ -493,6 +495,7 @@ int PTask(void)
       ButtonPressingUp=1;
       UpTaskActiv=0;
       redsort = false;
+      Controller1.rumble(".");
     }
 
     // DRIVES BACKWARDS ---------------------------------------------------------------
@@ -511,24 +514,24 @@ int PTask(void)
   }
 }
 
-
+/*
 int BTask(void) {
   int mvel = 0;
   int pow1 = 0;
   while(true) {
 
-    if(BTaskActiv==1) {
+    if(YTaskActiv==1) {
       
-      if(abs(LiftSensor.position(degrees)) < 20.25) {
-        RunArms(60);
-        if(abs(LiftSensor.position(degrees)) > 13.25) {
-          BTaskActiv = 0;
+      if(abs(LiftSensor.position(degrees)) < 20.5) {
+        RunArms(50);
+        if(abs(LiftSensor.position(degrees)) > 13.5) {
+          YTaskActiv = 0;
         }
       } 
-      else if(abs(LiftSensor.position(degrees)) > 13.25) {
-        RunArms(-60);
-        if(abs(LiftSensor.position(degrees)) <  20.25) {
-          BTaskActiv = 0;
+      else if(abs(LiftSensor.position(degrees)) > 13.5) {
+        RunArms(-50);
+        if(abs(LiftSensor.position(degrees)) <  20.5) {
+          YTaskActiv = 0;
         }
       } 
     }
@@ -544,7 +547,6 @@ int BTask(void) {
           Wall.setStopping(hold);
           Wall.stop(); 
         }
-          
         
       }
       if((pow1 < 0 && abs(LiftSensor.position(degrees)) < 4) || (pow1 > 0 && abs(LiftSensor.position(degrees)) > 250)){
@@ -559,16 +561,98 @@ int BTask(void) {
 
     if(Controller1.ButtonY.pressing() && ButtonPressingY == 0) {
       ButtonPressingY=1;
-      BTaskActiv=1;
+      YTaskActiv=1;
     }
 
     else if(!Controller1.ButtonY.pressing())ButtonPressingY=0;
 
-    else if(BTaskActiv==1&&Controller1.ButtonY.pressing()&&ButtonPressingY==0) {
+    else if(YTaskActiv==1&&Controller1.ButtonY.pressing()&&ButtonPressingY==0) {
       ButtonPressingY=1;
-      BTaskActiv=0;
+      YTaskActiv=0;
       RunArms(0);
     }
+  }
+  return 0;
+}
+*/
+
+int BTask(void) {
+  int pow1 = 0;
+  int targetPosition = 19;  // Desired position between 324 and 342 degrees
+  double integral = 0.0;     // Integral term
+  double previousError = 0.0; // Previous error for derivative calculation
+  double Kp = -0.5;           // Proportional gain (adjust as needed)
+  double Ki = 0.1;            // Integral gain (adjust as needed)
+  double Kd = 0.1;            // Derivative gain (adjust as needed)
+
+  while (true) {
+    if (YTaskActiv == 1) {
+      int currentPos = abs(LiftSensor.position(degrees));
+      double error = targetPosition - currentPos;
+
+      // Calculate integral term
+      integral += error;
+
+      // Calculate derivative term
+      double derivative = error - previousError;
+
+      // PID calculation
+      double liftPower = Kp * error + Ki * integral + Kd * derivative;
+
+      // Limit the power to within motor capabilities
+      if (liftPower > 100) liftPower = 100;
+      if (liftPower < -100) liftPower = -100;
+
+      // Ensure minimum power to overcome static friction
+      if (liftPower > 0 && liftPower < 40) liftPower = 40;
+      if (liftPower < 0 && liftPower > -40) liftPower = -40;
+
+      RunArms(-liftPower);
+
+      // Stop the lift when close enough to the target
+      if (abs(error) <= 2) {
+        RunArms(0);
+        YTaskActiv = 0;
+      }
+
+      // Update previous error
+      previousError = error;
+
+    } else {
+      // Invert manual control power
+      pow1 = (Controller1.ButtonL1.pressing() - Controller1.ButtonL2.pressing()) * -100;
+
+      if (pow1 == 0) {
+        Wall.setStopping(hold);
+        Wall.stop();
+      } else {
+        if((pow1 < 0 && abs(LiftSensor.position(degrees)) < 4) || (pow1 > 0 && abs(LiftSensor.position(degrees)) > 250)){
+          Wall.setStopping(hold);
+          Wall.stop();
+        }
+        else {
+          RunArms(-pow1);
+        }   
+      }
+    }
+
+    // Handle Button A presses
+    if (Controller1.ButtonY.pressing() && ButtonPressingY == 0) {
+      ButtonPressingY = 1;
+      YTaskActiv = 1;
+    } else if (!Controller1.ButtonY.pressing()) {
+      ButtonPressingY = 0;
+    }
+
+    // Override if BTaskActiv is active
+    if (YTaskActiv == 1 && Controller1.ButtonY.pressing() && ButtonPressingY == 0) {
+      ButtonPressingY = 1;
+      YTaskActiv = 0;
+      RunArms(0);
+    }
+
+    // Prevent CPU overload
+    wait(10, msec);
   }
   return 0;
 }
@@ -603,8 +687,12 @@ void usercontrol(void) {
     // values based on feedback from the joysticks.
     
     task Dtask=task(DriveTask);
-    // task Atask=task(ATask);
-    task Itask=task(ITask);
+    if (redsort == true) {
+      task Itask=task(ITask);
+    }
+    else {
+      task Atask=task(ATask);
+    }
     task Ptask=task(PTask);
     task Btask=task(BTask);
 
@@ -612,6 +700,7 @@ void usercontrol(void) {
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
     // ........................................................................
+
 
     wait(20, msec); // Sleep the task for a short amount of time to prevent wasted resources.
   }
@@ -630,7 +719,6 @@ int main() {
   // Run the pre-autonomous function.
   pre_auton();
   
-  
 
   // Prevent main from exiting with an infinite loop.
   using namespace std;
@@ -638,7 +726,7 @@ int main() {
     wait(100, msec);
     
     // std::cout << "BLOU" << endl;
-    // std::cout << LiftSensor.position(degrees) << endl;
+    std::cout << LiftSensor.position(degrees) << endl;
     
 
   }
