@@ -20,4 +20,6 @@ extern void six_blue();
 extern void six_red();
 extern void red_corner_clear();
 extern void blue_corner_clear();
+extern void red_rush();
+extern void blue_rush();
 #endif

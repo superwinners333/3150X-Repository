@@ -15,6 +15,7 @@ extern motor Wall;
 extern digital_out Doinker;
 extern digital_out Clamp;
 extern digital_out Pistake;
+extern digital_out RightDoinker;
 extern motor PU;
 extern inertial Gyro;
 
