@@ -49,7 +49,7 @@ void blue_positive()
     wait(150,msec);
     MoveEncoderPID(TestPara,90,4,0.4,40,false); // drives away from corner rings
     wait(50,msec);
-    RightDoinker.set(true);
+    RightDoinker.set(true); 
     wait(50,msec);
     MoveEncoderPID(TestPara,-100,6,0.2,40,false); // drives to place doinker in optimal place to sweep
     RunRoller(0);

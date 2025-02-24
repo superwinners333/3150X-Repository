@@ -27,8 +27,11 @@ extern void Move(int left, int right);
 extern void BStop();
 extern void CStop();
 extern void RunRoller(int val);
-extern void BStopRoller();
-extern void CStopRoller();
+
+extern int RedIntakeSpeed;
+extern void RedColourSort(void);
+extern bool RedAutoSort;
+
 extern int RunArms(int val);
 extern void StopArms(void);
 extern void RestrictArms(void);

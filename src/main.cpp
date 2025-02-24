@@ -609,7 +609,7 @@ int BTask(void) {
 
 int BTask(void) {
   int pow1 = 0;
-  int targetPosition = 21;  // Desired position between 324 and 342 degrees
+  int targetPosition = 21.5;  // Desired position between 324 and 342 degrees
   double integral = 0.0;     // Integral term
   double previousError = 0.0; // Previous error for derivative calculation
   double Kp = -0.5;           // Proportional gain (adjust as needed)

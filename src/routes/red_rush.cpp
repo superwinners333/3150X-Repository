@@ -13,10 +13,10 @@ void red_rush() // original
 {
     PIDDataSet TestPara={1.5,0.1,0.15}; // this is important and DONT TOUCH THIS
 
-    TurnMaxTimePID(TestPara, -13.8, 0.4, false); // rotates to center rings
+    TurnMaxTimePID(TestPara, -14, 0.4, false); // rotates to center rings
     Doinker.set(true); // activates doinker to grab center rings
     RunRoller(100);
-    MoveEncoderPID(TestPara, -100, 60, 0.2, -13.8,true); // rushes to center rings
+    MoveEncoderPID(TestPara, -100, 60, 0.2, -14,true); // rushes to center rings
     wait(100,msec);
     // RunRoller(0);
     MoveEncoderPID(TestPara, 30, 2.5, 0.2, -13.8,true); // slowly backs up

@@ -112,17 +112,57 @@ Roller.setMaxTorque(100,percent);
 Roller.spin(forward,(double)val/100.0*12,volt);
 }
 
-void BStopRoller()
+
+int RedIntakeSpeed = 0;
+bool RedAutoSort = false;
+void RedColourSort(void)
 {
-  Roller.setStopping(brake);
-  Roller.stop();
+  int pauser = 0;
+  int Eject = 0;
+  float olddegree = 0;
+
+  while (true) {
+    // Improved color detection logic
+    Csen.setLight(ledState::on);
+    Csen.setLightPower(100, percent);
+    int hue = Csen.hue();
+    bool isRed = (hue >= 0 && hue <= 48);;
+
+    // Check if an object is detected and it's the desired color
+    if (isRed && Csen.isNearObject() == 1 && Eject == 0) {
+      olddegree = Roller.position(degrees) + 440; // 410
+      Eject = 1;
+      pauser = 1;
+    }
+
+    if (Eject == 0) {
+      RunRoller(RedIntakeSpeed);
+    }
+
+    // Eject mechanism to launch the ring
+    while (Eject == 1) {
+      while (Roller.position(degrees) < olddegree){
+        RunRoller(100);
+      }
+      if (pauser == 1){
+        olddegree = Roller.position(degrees) - 170;
+        pauser = 0;
+      }
+
+      while (Roller.position(degrees) > olddegree && Eject == 1){
+        RunRoller(-20);
+        if (Roller.position(degrees) <= olddegree) {
+          RunRoller(0);
+          Eject = 0;
+        }
+      }
+    }
+
+    // Small delay to prevent CPU overload
+    wait(10, msec);
+  }
 }
 
-void CStopRoller()
-{
-  Roller.setStopping(coast);
-  Roller.stop();
-}
 
 int RunArms(int val)
 {

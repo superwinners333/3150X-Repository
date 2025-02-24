@@ -72,5 +72,5 @@ void blue_corner_clear() // original
     wait(50,msec);
     MoveEncoderPID(TestPara,-100,5,0.2,-150,false); // drives forward away from corner
     TurnMaxTimePID(TestPara, 0, 0.5, false); // turns so back faces center mogo
-    MoveEncoderPID(TestPara,100,9,0.2,0,false); 
+    MoveEncoderPID(TestPara,100,9,0.2,0,false);  
 }

@@ -10,9 +10,9 @@ void red_corner_clear()
 { // NEGATIVE IS TO THE LEFT
     PIDDataSet TestPara={1.5,0.1,0.15};
 
-    TurnMaxTimePID(TestPara, 34, 0.4, true);
+    TurnMaxTimePID(TestPara, 36, 0.4, true);
     RunArms(100);
-    MoveEncoderPID(TestPara,-50,1.1,0.2,34,true);
+    MoveEncoderPID(TestPara,-50,1.1,0.2,36,true);
     wait(175,msec);
     RunArms(0);
     TurnMaxTimePID(TestPara, 25, 1, true);
@@ -29,45 +29,48 @@ void red_corner_clear()
     RunRoller(100);
     MoveEncoderPID(TestPara,-100,17,0.3,50,false); // grabs first ring
     Pistake.set(false);
-    wait(240,msec);
-    MoveEncoderPID(TestPara,100,16,0.2,50,false); // drives away
+    wait(220,msec);
+    MoveEncoderPID(TestPara,90,16.5,0.8,-50,false); // backs away
     wait(20,msec);
-    TurnMaxTimePID(TestPara, -100, 0.3, false); // turns to next ring
-    MoveEncoderPID(TestPara,-100,34,0.5,-100,false); // drives into next ring
-
-    // MoveEncoderPID(TestPara,100,30,0.4,-130,false);  // drives away
-    wait(15,msec);
-    TurnMaxTimePID(TestPara, -15, 0.6, false); // turns to face corner
-
-    wait(20,msec);
-    // Doinker.set(true);
-    MoveEncoderPID(TestPara,-75,55,0.5,-20,true); // moves to corner ring
-    RunRoller(-100);
-    MoveEncoderPID(TestPara,-75,14,0.5,-20,true);
-
-    // TurnMaxTimePID(TestPara, 40, 0.2, false); // sweeps
-    // Doinker.set(false);
-    // TurnMaxTimePID(TestPara, -30, 0.4, false);
-
-    wait(100,msec);
-    RunRoller(100);
-
+    TurnMaxTimePID(TestPara, -99, 0.3, false); // turns to second ring
+    MoveEncoderPID(TestPara,-100,26,0.5,-99,false); // grabs second ring
+    TurnMaxTimePID(TestPara, -20, 0.4, false); // turns towards corner
+    MoveEncoderPID(TestPara,-100,33,0.4,-23,false); // runs into corner
+    MoveTimePID(TestPara,50,1.2,0.4,-23,false);  // runs into corner
+   
+    wait(200,msec);
+    MoveEncoderPID(TestPara,40,2.9,0.3,-23,false); // backs up to activate pistake
+    Pistake.set(true);
+    wait(150,msec);
+    MoveEncoderPID(TestPara,-100,3.6,0.2,-23,false); // runs into corner again
+    wait(150,msec);
+    Pistake.set(false);
+    wait(150,msec);
+    MoveEncoderPID(TestPara,90,4,0.4,-40,false); // drives away from corner rings
+    
     wait(50,msec);
-    MoveEncoderPID(TestPara,-100,7,0.3,-30,true); // runs into corner more
-
-    wait(70,msec);
-    MoveEncoderPID(TestPara,15,9,0.4,-30,true); // drives away from corner
-    wait(20,msec);
-
     Doinker.set(true);
-    wait(40,msec);
-    MoveEncoderPID(TestPara,-100,3,0.4,-20,true);
     wait(50,msec);
-    TurnMaxTimePID(TestPara, 30,0.4, false);
+    RunRoller(0);
+    MoveEncoderPID(TestPara,-100,6,0.2,-40,false); // drives to place doinker in optimal place to sweep
+    wait(50,msec);
+    TurnMaxTimePID(TestPara, 40, 0.3, true); // sweeps corner
+    wait(20,msec);
+    RunRoller(100);
+    MoveEncoderPID(TestPara,100,2,0.4,40,false); // backs up a bit
+    wait(20,msec);
     Doinker.set(false);
     wait(50,msec);
-    TurnMaxTimePID(TestPara, 180, 0.4, false);
-    // Clamp.set(false);
-    MoveEncoderPID(TestPara,-100,4,0.4,180,false);
+    
+    TurnMaxTimePID(TestPara, 150, 0.4, false); // turns so mogo faces corner
+    RunRoller(0);
+    wait(50,msec);
+    MoveTimePID(TestPara, -100, 0.8, 0.2, 150, false); // backs up into corner to release mogo
+    wait(50,msec);
+    Clamp.set(false);
+    wait(50,msec);
+    MoveEncoderPID(TestPara,-100,5,0.2,150,false); // drives forward away from corner
+    TurnMaxTimePID(TestPara, 0, 0.5, false); // turns so back faces center mogo
+    MoveEncoderPID(TestPara,100,9,0.2,0,false); 
 
 }
