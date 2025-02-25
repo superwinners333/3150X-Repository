@@ -19,7 +19,7 @@ motor RM = motor(PORT14, ratio6_1, true);
 motor RB = motor(PORT8, ratio6_1, true);
 // other motors
 motor Roller = motor(PORT16, ratio6_1, false);
-motor Wall = motor(PORT1, ratio36_1, false);
+motor Wall = motor(PORT1, ratio18_1, false);
 digital_out Pistake = digital_out(Brain.ThreeWirePort.G);
 digital_out Doinker = digital_out(Brain.ThreeWirePort.B);
 digital_out RightDoinker = digital_out(Brain.ThreeWirePort.H);

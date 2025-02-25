@@ -32,7 +32,7 @@ void red_positive() // original
     MoveEncoderPID(TestPara,-100,17,0.3,50,false); // grabs first ring
     Pistake.set(false);
     wait(220,msec);
-    MoveEncoderPID(TestPara,90,16.5,0.8,-50,false); // backs away
+    MoveEncoderPID(TestPara,90,16.5,0.8,50,false); // backs away
     wait(20,msec);
     TurnMaxTimePID(TestPara, -99, 0.3, false); // turns to second ring
     MoveEncoderPID(TestPara,-100,26,0.5,-99,false); // grabs second ring
@@ -40,14 +40,15 @@ void red_positive() // original
     MoveEncoderPID(TestPara,-100,33,0.4,-23,false); // runs into corner
     MoveTimePID(TestPara,50,1.2,0.4,-23,false);  // runs into corner
    
-    wait(200,msec);
-    MoveEncoderPID(TestPara,40,2.9,0.3,-23,false); // backs up to activate pistake
+    wait(320,msec);
+    MoveEncoderPID(TestPara,30,5,0.6,-20,true); // backs up to activate pistake
+    wait(250,msec);
     Pistake.set(true);
-    wait(150,msec);
-    MoveEncoderPID(TestPara,-100,3.6,0.2,-23,false); // runs into corner again
-    wait(150,msec);
+    wait(200,msec);
+    MoveTimePID(TestPara,100,1,0.4,-20,false); // runs into corner again
+    wait(180,msec);
     Pistake.set(false);
-    wait(150,msec);
+    wait(180,msec);
     MoveEncoderPID(TestPara,90,4,0.4,-40,false); // drives away from corner rings
     
     wait(50,msec);
@@ -63,9 +64,17 @@ void red_positive() // original
     wait(20,msec);
     Doinker.set(false);
     wait(50,msec);
+
+    TurnMaxTimePID(TestPara, 150, 0.4, false); // turns so mogo faces corner
+    RunRoller(0);
+    wait(50,msec);
+    MoveTimePID(TestPara, -100, 0.8, 0.2, 150, false); // backs up into corner to release mogo
+    wait(50,msec);
+    Clamp.set(false);
+    wait(50,msec);
     TurnMaxTimePID(TestPara, 135, 0.5, false); // turns to ladder
-    MoveEncoderPID(TestPara,-100,20,0.2,135,false); // drives to ladder
+    MoveEncoderPID(TestPara,-100,47,0.2,135,false); // drives to ladder
     RunArms(100);
-    wait(700,msec);
+    wait(500,msec);
     RunArms(0);
 }

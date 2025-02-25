@@ -13,7 +13,7 @@ void red_negative()
     TurnMaxTimePID(TestPara, -36, 0.4, true);
     MoveEncoderPID(TestPara,-50,1.3,0.2,-36,true);
     RunArms(100);
-    wait(550,msec);
+    wait(400,msec);
     RunArms(0);
     TurnMaxTimePID(TestPara, -25, 1, true);
     MoveEncoderPID(TestPara,80,28,0.2,-25,true);

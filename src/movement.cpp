@@ -121,7 +121,7 @@ void RedColourSort(void)
   int Eject = 0;
   float olddegree = 0;
 
-  while (true) {
+  while (RedAutoSort) {
     // Improved color detection logic
     Csen.setLight(ledState::on);
     Csen.setLightPower(100, percent);

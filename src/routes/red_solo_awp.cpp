@@ -10,11 +10,11 @@ void red_solo_awp() // FOR RED NEGATIVE CORNER
 {   
    
     PIDDataSet TestPara={1.5,0.1,0.15}; // for red positive corner or blue negative
-    TurnMaxTimePID(TestPara, -34, 0.4, true);
-    RunArms(100);
-    MoveEncoderPID(TestPara,-50,1.1,0.2,-34,true);
+    TurnMaxTimePID(TestPara, -36, 0.4, true);
     // RunArms(100);
-    wait(175,msec);
+    MoveEncoderPID(TestPara,-50,1.0,0.2,-36,true);
+    RunArms(100);
+    wait(400,msec);
     RunArms(0);
     TurnMaxTimePID(TestPara, -25, 1, true);
 
@@ -43,22 +43,22 @@ void red_solo_awp() // FOR RED NEGATIVE CORNER
     RunRoller(0); // stops intake to store ring
     Pistake.set(false);
 
-    TurnMaxTimePID(TestPara, 42, 0.4, false); // turns to mogo
-    MoveEncoderPID(TestPara,100,21,0.2,42,true); // drives to mogo
-    MoveEncoderPID(TestPara,30,20,0.2,42,true);
+    TurnMaxTimePID(TestPara, 39, 0.4, false); // turns to mogo
+    MoveEncoderPID(TestPara,100,21,0.2,39,true); // drives to mogo
+    MoveEncoderPID(TestPara,30,21,0.2,42,true);
     Clamp.set(true);
     wait(40,msec);
     RunRoller(100);
     TurnMaxTimePID(TestPara, -90, 0.3, false); // turns to last ring
-    MoveEncoderPID(TestPara,-100,34,0.2,-90,false); // grabs ring
-    MoveEncoderPID(TestPara,100,10,0.2,-90,false); // drives backwards
+    MoveEncoderPID(TestPara,-100,38,0.2,-94,false); // grabs ring
+    MoveEncoderPID(TestPara,100,10,0.2,-94,false); // drives backwards
     wait(30,msec);
 
-    TurnMaxTimePID(TestPara, 90, 0.4, false); // turns to face ladder
+    TurnMaxTimePID(TestPara, 100, 0.4, false); // turns to face ladder
     wait(100,msec);
     RunArms(100);
-    MoveEncoderPID(TestPara,-100,8,0.2,90,false); // drives towards ladder
-    wait(400,msec);
+    MoveEncoderPID(TestPara,-100,12,0.2,100,false); // drives towards ladder
+    wait(200,msec);
     RunArms(0);
     
 }
