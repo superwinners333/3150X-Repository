@@ -139,7 +139,7 @@ void prog_skills()
     // Move(-30,-30); // continuously drives into bot
     wait(20,msec);
     RunArms(100); // scores on wall stake
-    wait(1.5,sec);
+    wait(0.8,sec);
     Move(0,0);
 
     RunArms(0);
@@ -207,13 +207,13 @@ void prog_skills()
     wait(30,msec);
     MoveEncoderPID(TestPara, -100, -34, 0.4, 143, true); // grabs ring
     TurnMaxTimePID(TestPara, 90, 0.2, false); // turns to next ring
-    MoveEncoderPID(TestPara, -100, -28, 0.4, 90, true); // grabs ring
+    MoveEncoderPID(TestPara, -100, -23, 0.4, 90, true); // grabs ring
 
     TurnMaxTimePID(TestPara, 0, 0.6, false); // turns to the 2 rings in a row
     MoveEncoderPID(TestPara, -80, -22, 0.6, 0, false); // grabs both of the rings
     MoveEncoderPID(TestPara, -40, -30, 0.6, 0, false);
     wait(80,msec);
-    MoveEncoderPID(TestPara, 100, -5, 0.4, 0, false); // backs up
+    MoveEncoderPID(TestPara, 100, -6, 0.4, 0, false); // backs up
     wait(20,msec);
 
     TurnMaxTimePID(TestPara, 95, 0.4, false); // turns to final ring

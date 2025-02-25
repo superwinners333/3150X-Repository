@@ -396,14 +396,14 @@ int ATask(void)
 float olddegree = 0;
 int Eject = 0;
 int pauser = 0;
-bool redsort = false;
+bool Csort = false;
 
 int ITask(void) {
   
   double pow;
   using namespace std;
 
-  while (redsort) {
+  while (Csort) {
 
       // Improved color detection logic
       Csen.setLight(ledState::on);
@@ -427,9 +427,8 @@ int ITask(void) {
       }
 
       // Eject mechanism to "yeet" the ring
-      while (Eject == 1 && redsort) {
-        // olddegree = Roller.position(degrees) + 700;
-        while (Roller.position(degrees) < olddegree && redsort){
+      while (Eject == 1 && Csort) {
+        while (Roller.position(degrees) < olddegree && Csort){
           RunRoller(100);
         }
         if (pauser == 1){
@@ -440,14 +439,14 @@ int ITask(void) {
         std::cout << Roller.position(degrees) << endl;
         std::cout << olddegree << endl;
 
-        while (Roller.position(degrees) > olddegree && Eject == 1 && redsort){
+        while (Roller.position(degrees) > olddegree && Eject == 1 && Csort){
           RunRoller(-20);
-          if (Roller.position(degrees) <= olddegree || redsort == false) {
+          if (Roller.position(degrees) <= olddegree || Csort == false) {
             RunRoller(0);
             Eject = 0;
           }
         }
-        // if (redsort) Eject = 0;
+        // if (Csort) Eject = 0;
       }
 
       // std::cout << Roller.position(degrees) << endl;
@@ -467,11 +466,13 @@ int ButtonPressingA,ATaskActiv;
 int ButtonPressingB,BTaskActiv;
 int ButtonPressingUp,UpTaskActiv;
 int ButtonPressingDown, DownTaskActiv;
+int ButtonPressingLeft, LeftTaskActiv;
+int ButtonPressingRight, RightTaskActiv;
 
 bool MacroToggle = false;
 int ArmDistance;
 
-// bool redsort = true;
+// bool Csort = true;
 
 int PTask(void)
 {
@@ -516,7 +517,11 @@ int PTask(void)
     {
       ButtonPressingUp=1;
       UpTaskActiv=1;
-      redsort = true;
+      Csort = true;
+
+      Controller1.Screen.clearLine(1);
+      Controller1.Screen.setCursor(1,1);
+      Controller1.Screen.print("SORT ON");
     }
 
     else if(!Controller1.ButtonUp.pressing()) ButtonPressingUp=0;
@@ -525,9 +530,52 @@ int PTask(void)
     {
       ButtonPressingUp=1;
       UpTaskActiv=0;
-      redsort = false;
+      Csort = false;
       Controller1.rumble(".");
+
+      Controller1.Screen.clearLine(1);
+      Controller1.Screen.setCursor(1,1);
+      Controller1.Screen.print("SORT OFF");
     }
+
+    // RIGHT DOINKER BUTTON ------------------------------------------------------------------
+    if(RightTaskActiv==0&&Controller1.ButtonRight.pressing()&&ButtonPressingRight==0)
+    {
+      ButtonPressingRight=1;
+      RightTaskActiv=1;
+      RightDoinker.set(true);
+    }
+
+    else if(!Controller1.ButtonRight.pressing()) ButtonPressingRight=0;
+
+    else if(BTaskActiv==1&&Controller1.ButtonB.pressing()&&ButtonPressingRight==0)
+    {
+      ButtonPressingRight=1;
+      RightTaskActiv=0;
+      RightDoinker.set(false);
+    }
+
+    // SHUT DOWN ALL AUTON THINGS ---------------------------------------------------------
+    if(LeftTaskActiv==0&&Controller1.ButtonLeft.pressing()&&ButtonPressingLeft==0)
+    {
+      ButtonPressingLeft=1;
+      LeftTaskActiv=1;
+      RightDoinker.set(false);
+      AutoSort = false;
+      Pistake.set(false);
+    }
+
+    else if(!Controller1.ButtonLeft.pressing()) ButtonPressingLeft=0;
+
+    else if(LeftTaskActiv==1&&Controller1.ButtonLeft.pressing()&&ButtonPressingLeft==0)
+    {
+      ButtonPressingLeft=1;
+      LeftTaskActiv=0;
+      RightDoinker.set(false);
+      AutoSort = false;
+      Pistake.set(false);
+    }
+
 
     // DRIVES BACKWARDS ---------------------------------------------------------------
     // if(DownTaskActiv==0&&Controller1.ButtonDown.pressing()&&ButtonPressingDown==0)
@@ -544,68 +592,6 @@ int PTask(void)
 
   }
 }
-
-/*
-int BTask(void) {
-  int mvel = 0;
-  int pow1 = 0;
-  while(true) {
-
-    if(YTaskActiv==1) {
-      
-      if(abs(LiftSensor.position(degrees)) < 20.5) {
-        RunArms(50);
-        if(abs(LiftSensor.position(degrees)) > 13.5) {
-          YTaskActiv = 0;
-        }
-      } 
-      else if(abs(LiftSensor.position(degrees)) > 13.5) {
-        RunArms(-50);
-        if(abs(LiftSensor.position(degrees)) <  20.5) {
-          YTaskActiv = 0;
-        }
-      } 
-    }
-    else {
-      
-      // OP control for the arms
-      pow1=(Controller1.ButtonL1.pressing()-Controller1.ButtonL2.pressing())*100;
-      if(pow1==0) {
-        if (abs(LiftSensor.position(degrees)) < 25 && abs(LiftSensor.position(degrees)) > 14){
-          RunArms(12);
-        }
-        else{
-          Wall.setStopping(hold);
-          Wall.stop(); 
-        }
-        
-      }
-      if((pow1 < 0 && abs(LiftSensor.position(degrees)) < 4) || (pow1 > 0 && abs(LiftSensor.position(degrees)) > 250)){
-        Wall.setStopping(hold);
-        Wall.stop();
-      }
-      else {
-        BTaskActiv = 0;
-        RunArms(pow1);
-      }
-    }
-
-    if(Controller1.ButtonY.pressing() && ButtonPressingY == 0) {
-      ButtonPressingY=1;
-      YTaskActiv=1;
-    }
-
-    else if(!Controller1.ButtonY.pressing())ButtonPressingY=0;
-
-    else if(YTaskActiv==1&&Controller1.ButtonY.pressing()&&ButtonPressingY==0) {
-      ButtonPressingY=1;
-      YTaskActiv=0;
-      RunArms(0);
-    }
-  }
-  return 0;
-}
-*/
 
 int BTask(void) {
   int pow1 = 0;
@@ -689,14 +675,6 @@ int BTask(void) {
 }
 
 
-int MogoTask(void) {
-
-  if (Brain.Timer.time(msec) == 5000) {
-    Controller1.rumble("- - -");
-  }
-  return 0;
-}
-
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
@@ -718,7 +696,7 @@ void usercontrol(void) {
     // values based on feedback from the joysticks.
     
     task Dtask=task(DriveTask);
-    if (redsort == true) {
+    if (Csort == true) {
       task Itask=task(ITask);
     }
     else {

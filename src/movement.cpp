@@ -112,31 +112,40 @@ Roller.setMaxTorque(100,percent);
 Roller.spin(forward,(double)val/100.0*12,volt);
 }
 
-
-int RedIntakeSpeed = 0;
-bool RedAutoSort = false;
-void RedColourSort(void)
+// =================================================================================== //
+int ColourIntakeSpeed = 0;
+bool AutoSort = false;
+void ColourSort(int colour)
 {
   int pauser = 0;
   int Eject = 0;
   float olddegree = 0;
-
-  while (RedAutoSort) {
+  bool isColour;
+  while (AutoSort) {
     // Improved color detection logic
     Csen.setLight(ledState::on);
     Csen.setLightPower(100, percent);
     int hue = Csen.hue();
-    bool isRed = (hue >= 0 && hue <= 48);;
+
+    if (colour == 0){ // red
+      isColour = (hue >= 0 && hue <= 48);
+    }
+    if (colour == 1){ // blue
+      isColour = (hue >= 205 && hue <= 220);
+    }
+    else { // also red
+      isColour = (hue >= 0 && hue <= 48);
+    }
 
     // Check if an object is detected and it's the desired color
-    if (isRed && Csen.isNearObject() == 1 && Eject == 0) {
+    if (isColour && Csen.isNearObject() == 1 && Eject == 0) {
       olddegree = Roller.position(degrees) + 440; // 410
       Eject = 1;
       pauser = 1;
     }
 
     if (Eject == 0) {
-      RunRoller(RedIntakeSpeed);
+      RunRoller(ColourIntakeSpeed);
     }
 
     // Eject mechanism to launch the ring
@@ -162,7 +171,7 @@ void RedColourSort(void)
     wait(10, msec);
   }
 }
-
+// ========================================================================================= //
 
 int RunArms(int val)
 {
@@ -184,11 +193,11 @@ void RestrictArms(void)
   } 
 }
 
+// ========================================================================================= //
+
 void Macro(void)
 {
   int MacroActiv = 1;
-  int mvel = 0;
-  int pow1 = 0;
 
   while(MacroActiv==1) {
     
@@ -209,30 +218,52 @@ void Macro(void)
   }
 }
 
-void AllianceStake(void)
-{
-  int AllianceActiv = 1;
-  int mvel = 0;
-  int pow1 = 0;
+void PID_Macro(void) {
+  int targetPosition = 21.5;  // Desired position between 324 and 342 degrees
+  double integral = 0.0;     // Integral term
+  double previousError = 0.0; // Previous error for derivative calculation
+  double Kp = -0.5;           // Proportional gain (adjust as needed)
+  double Ki = 0.1;            // Integral gain (adjust as needed)
+  double Kd = 0.1;            // Derivative gain (adjust as needed)
+  bool MacroActiv2 = true;
 
-  while(AllianceActiv==1) {
-    
-    if(abs(LiftSensor.position(degrees)) < 197) {
-      RunArms(100);
-      if(abs(LiftSensor.position(degrees)) > 187) {
-        AllianceActiv = 0;
-        StopArms();
-      }
-    } 
-    else if(abs(LiftSensor.position(degrees)) > 187) {
-      RunArms(-100);
-      if(abs(LiftSensor.position(degrees)) <  197) {
-        AllianceActiv = 0;
-        StopArms();
-      }
-    } 
+  while (MacroActiv2) {
+    int currentPos = abs(LiftSensor.position(degrees));
+    double error = targetPosition - currentPos;
+
+    // Calculate integral term
+    integral += error;
+
+    // Calculate derivative term
+    double derivative = error - previousError;
+
+    // PID calculation
+    double liftPower = Kp * error + Ki * integral + Kd * derivative;
+
+    // Limit the power to within motor capabilities
+    if (liftPower > 100) liftPower = 100;
+    if (liftPower < -100) liftPower = -100;
+
+    // Ensure minimum power to overcome static friction
+    if (liftPower > 0 && liftPower < 40) liftPower = 40;
+    if (liftPower < 0 && liftPower > -40) liftPower = -40;
+
+    RunArms(-liftPower);
+
+    // Stop the lift when close enough to the target
+    if (abs(error) <= 2) {
+      RunArms(0);
+      MacroActiv2 = false;
+    }
+
+    // Update previous error
+    previousError = error;
+
   }
+  // Prevent CPU overload
+  wait(10, msec);
 }
+
 
 
 int PrevE;//Error at t-1
