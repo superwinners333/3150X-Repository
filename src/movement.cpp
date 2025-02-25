@@ -201,16 +201,16 @@ void Macro(void)
 
   while(MacroActiv==1) {
     
-    if(abs(LiftSensor.position(degrees)) < 23.5) { // 32
+    if(abs(LiftSensor.position(degrees)) < 24) { // 32
       RunArms(40);
-      if(abs(LiftSensor.position(degrees)) > 18.5) { // 25
+      if(abs(LiftSensor.position(degrees)) > 19) { // 25
         MacroActiv = 0;
         StopArms();
       }
     } 
-    else if(abs(LiftSensor.position(degrees)) > 23.5) { // 25
+    else if(abs(LiftSensor.position(degrees)) > 24) { // 25
       RunArms(-40);
-      if(abs(LiftSensor.position(degrees)) <  18.5) { // 32
+      if(abs(LiftSensor.position(degrees)) <  19) { // 32
         MacroActiv = 0;
         StopArms();
       }
