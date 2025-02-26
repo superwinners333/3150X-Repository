@@ -365,13 +365,17 @@ CStop();
 }
 int RV;
 int LV;
+bool driving = true;
 int DriveTask(void){
   while(true)
   {
     EXIT=true;
-    RV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
-    LV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
-    Move(LV,RV); 
+    if (driving)
+    {
+      RV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
+      LV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
+      Move(LV,RV); 
+    }
   }
 
 return 0;
@@ -396,7 +400,7 @@ int ATask(void)
 float olddegree = 0;
 int Eject = 0;
 int pauser = 0;
-bool Csort = false;
+bool Csort = true;
 
 int ITask(void) {
   
@@ -548,7 +552,7 @@ int PTask(void)
 
     else if(!Controller1.ButtonRight.pressing()) ButtonPressingRight=0;
 
-    else if(BTaskActiv==1&&Controller1.ButtonB.pressing()&&ButtonPressingRight==0)
+    else if(RightTaskActiv==1&&Controller1.ButtonRight.pressing()&&ButtonPressingRight==0)
     {
       ButtonPressingRight=1;
       RightTaskActiv=0;
@@ -560,7 +564,7 @@ int PTask(void)
     {
       ButtonPressingLeft=1;
       LeftTaskActiv=1;
-      RightDoinker.set(false);
+      // RightDoinker.set(false);
       AutoSort = false;
       Pistake.set(false);
     }
@@ -576,18 +580,21 @@ int PTask(void)
       Pistake.set(false);
     }
 
-
+    // bool driving = true;
     // DRIVES BACKWARDS ---------------------------------------------------------------
     // if(DownTaskActiv==0&&Controller1.ButtonDown.pressing()&&ButtonPressingDown==0)
     // {
     //   ButtonPressingDown=1;
+    //   driving = true;
     // }
 
     // else if(!Controller1.ButtonDown.pressing() && ButtonPressingDown==1) 
     // {
+    //   driving = false;
     //   PIDDataSet TestPara={1.5,0.1,0.15};
-    //   MoveEncoderPID(TestPara,100,2,0.4,0,false);
+    //   MoveEncoderPID(TestPara,100,10,0.2,0,false);
     //   ButtonPressingDown=0;
+    //   driving = true;
     // }
 
   }
