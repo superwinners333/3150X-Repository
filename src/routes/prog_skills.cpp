@@ -91,8 +91,8 @@ void prog_skills()
     MoveTimePID(TestPara, -50, 1.2, 0.2, -28, false); 
     wait(70,msec);
     Clamp.set(false);
-    wait(50,msec);
-    MoveEncoderPID(TestPara, -100, -5, 0.3, -40,true); // drives away from corner
+    wait(250,msec);
+    MoveEncoderPID(TestPara, -100, -4.5, 0.3, -40,true); // drives away from corner
     wait(70,msec);
     TurnMaxTimePID(TestPara, 90, 0.7, true); // rotate towards mogo on other side 
     // TurnMaxTimePID(TestPara, 90, 0.7, true);
@@ -115,7 +115,7 @@ void prog_skills()
     // OTHER SIDE WALL STAKES
     wait(20,msec);
     TurnMaxTimePID(TestPara, -37.8, 0.4, false); // turns to in front of wall stake
-    MoveEncoderPID(TestPara, -100, -31, 0.2, -37.8, true); // drives to in front of wall stake
+    MoveEncoderPID(TestPara, -100, -28, 0.2, -37.8, true); // drives to in front of wall stake
     wait(40,msec);
     Macro(); // activates macro
     TurnMaxTimePID(TestPara, -90, 0.4, false); // turns towards wall stake
@@ -162,7 +162,7 @@ void prog_skills()
     MoveEncoderPID(TestPara, -80, -44, 0.5, 180,false); // picks up the 3 rings that are in a line
     MoveEncoderPID(TestPara, -50, -39, 0.5, 180,false); 
     wait(100,msec);
-    MoveEncoderPID(TestPara, 80, -8, 0.5, 180,false); // backs up 
+    MoveEncoderPID(TestPara, 80, -9.8, 0.5, 180,false); // backs up 
     wait(70,msec);
     TurnMaxTimePID(TestPara, -85, 0.4, false); // turns to side ring -85
     MoveEncoderPID(TestPara, -90, -9.3, 0.6, -85,true); // picks up side ring
@@ -170,13 +170,12 @@ void prog_skills()
 
     // PUTTING OTHER MOGO IN CORNER
     TurnMaxTimePID(TestPara, 27, 0.8, false); // turns so mogo faces corner +5
-    wait(240,msec);
-    MoveTimePID(TestPara, -75, 0.6, 0.2, 27, false); // backs up into corner
+    wait(500,msec);
     RunRoller(0);
+    MoveTimePID(TestPara, -75, 0.6, 0.2, 27, false); // backs up into corner
     MoveTimePID(TestPara, -30, 0.8, 0.2, 27, true); // backs up into corner
-    wait(50,msec);
+    wait(250,msec);
     Clamp.set(false);
-    RunRoller(100);
     wait(50,msec);
     MoveEncoderPID(TestPara, -100, 8, 0.5, 40,false); // backs away from corner
     wait(50,msec);
@@ -192,24 +191,25 @@ void prog_skills()
     wait(80,msec);
     RunRoller(60);
     TurnMaxTimePID(TestPara, 90, 0.4, true); // turns to next ring
-    MoveEncoderPID(TestPara, -100, 35.6, 0.4, 90, true); // drives to it
+    MoveEncoderPID(TestPara, -100, 30, 0.4, 90, true); // drives to it
     wait(40,msec);
     // Gyro.setHeading(0,degrees);
-
+    
     // PUSHING MOGO INTO CORNER AND CLAMPING ANOTHER ONE
-    TurnMaxTimePID(TestPara, -2, 0.4, true); // turns to face mogo
-    MoveEncoderPID(TestPara, -100, -34, 0.2, -2, false); // drives into mogo
+    TurnMaxTimePID(TestPara, -7, 0.4, true); // turns to face mogo
     RunRoller(0);
-    TurnMaxTimePID(TestPara, -80, 0.3, false);
-    MoveTimePID(TestPara, 100, 1, 0.4, -80, false);
+    MoveEncoderPID(TestPara, -100, -34, 0.2, -7, false); // drives into mogo
+    
+    TurnMaxTimePID(TestPara, -90, 0.3, false);
+    MoveTimePID(TestPara, 100, 1.3, 0.4, -90, false);
     // MoveTimePID(TestPara, 40, 1.3, 0.4, -80, false); // pushes mogo into corner ------ IMPORTANT VALUE
 
-    MoveEncoderPID(TestPara, 100, 2, 0.4, -70, false);
+    MoveEncoderPID(TestPara, 100, 2, 0.4, -80, false);
     wait(50,msec);
-    TurnMaxTimePID(TestPara, -63, 0.3, false);
+    TurnMaxTimePID(TestPara, -70, 0.3, false);
 
-    MoveEncoderPID(TestPara, 100, -64, 0.4, -71, false); // drives backwards into next mogo
-    MoveEncoderPID(TestPara, 30, -33, 0.4, -71, false); // slows down
+    MoveEncoderPID(TestPara, 100, -64, 0.4, -70, false); // drives backwards into next mogo
+    MoveEncoderPID(TestPara, 30, -35, 0.4, -70, false); // slows down
     wait(50,msec);
     Clamp.set(true);
     wait(80,msec);
@@ -218,9 +218,9 @@ void prog_skills()
     TurnMaxTimePID(TestPara, 158, 0.5, false); // turns to next ring
     RunRoller(100);
     wait(30,msec);
-    MoveEncoderPID(TestPara, -100, -18, 0.4, 158, true); // grabs ring
+    MoveEncoderPID(TestPara, -100, -21, 0.4, 158, true); // grabs ring
     TurnMaxTimePID(TestPara, 90, 0.2, false); // turns to next ring
-    MoveEncoderPID(TestPara, -100, -22, 0.4, 90, true); // grabs ring
+    MoveEncoderPID(TestPara, -100, -27, 0.4, 90, true); // grabs ring
 
     TurnMaxTimePID(TestPara, 0, 0.6, false); // turns to the 2 rings in a row
     MoveEncoderPID(TestPara, -80, -22, 0.6, 0, false); // grabs both of the rings
@@ -230,9 +230,10 @@ void prog_skills()
     wait(20,msec);
 
     TurnMaxTimePID(TestPara, 95, 0.4, false); // turns to final ring
-    MoveEncoderPID(TestPara, -100, -7.5, 0.4, 95, false); // grabs final ring
+    MoveEncoderPID(TestPara, -100, -8.5, 0.4, 95, false); // grabs final ring
     Doinker.set(true);
     wait(250,msec);
+    TurnMaxTimePID(TestPara, 0, 0.2, true); // turns so mogo faces corner
     TurnMaxTimePID(TestPara, -152, 0.2, true); // turns so mogo faces corner
     Doinker.set(false);
     wait(300,msec);
