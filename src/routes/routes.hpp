@@ -22,4 +22,6 @@ extern void red_corner_clear();
 extern void blue_corner_clear();
 extern void red_rush();
 extern void blue_rush();
+
+extern void back_up();
 #endif

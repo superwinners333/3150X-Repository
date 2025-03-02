@@ -11,9 +11,9 @@ void blue_corner_clear() // original
     PIDDataSet TestPara={1.5,0.1,0.15};
 
     TurnMaxTimePID(TestPara, -40, 0.5, true); // 37
-    RunArms(100);
+    RunArms(90);
     MoveEncoderPID(TestPara,-50,1.2,0.2,-40,true);
-    wait(175,msec);
+    wait(200,msec);
     RunArms(0);
     TurnMaxTimePID(TestPara, -25, 1, true);
     wait(10,msec);
@@ -21,9 +21,9 @@ void blue_corner_clear() // original
     MoveEncoderPID(TestPara,80,28,0.2,-25,true); // grabs mogo
     RunArms(-100);
     MoveEncoderPID(TestPara,30,10,0.2,-16,true);
+    RunArms(0);
     Clamp.set(true);
     wait(80,msec);
-    RunArms(0);
     
     TurnMaxTimePID(TestPara, -50, 0.8, false);
     RunRoller(100);
@@ -40,7 +40,7 @@ void blue_corner_clear() // original
     MoveTimePID(TestPara,50,1.2,0.4,23,false);  // runs into corner
    
     wait(200,msec);
-    MoveEncoderPID(TestPara,40,2.9,0.3,23,false); // backs up to activate pistake
+    MoveEncoderPID(TestPara,40,3.7,0.3,23,false); // backs up to activate pistake
     Pistake.set(true);
     wait(150,msec);
     MoveEncoderPID(TestPara,-100,3.6,0.2,23,false); // runs into corner again

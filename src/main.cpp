@@ -13,6 +13,7 @@
 #include "screen_gui.hpp"
 #include "movement.hpp"
 #include "routes/routes.hpp"
+#include "math.h"
 
 #include <iostream>
 using namespace vex;
@@ -366,23 +367,58 @@ CStop();
 int RV;
 int LV;
 bool driving = true;
+int ButtonPressingDown, DownTaskActiv;
+bool firstClick=true;
+bool Running=false;
+bool LastStat;
+bool BackwardsToggle = false;
+ChassisDataSet SensorVals2;
+
 int DriveTask(void){
   while(true)
   {
     EXIT=true;
-    if (driving)
-    {
-      RV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
-      LV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
-      Move(LV,RV); 
-    }
+    // if(Controller1.ButtonDown.pressing()) BackwardsToggle = true;
+    // else if(!Controller1.ButtonDown.pressing() && BackwardsToggle) {
+    //   BackwardsToggle = false;
+    //   Move(60,60);
+    //   wait(150,msec);
+    //   Move(0,0);
+    // }
+
+    // if(Controller1.ButtonDown.pressing()||Running) {
+
+    //     if(!LastStat&&!Running)
+    //     {Zeroing(true,true);
+    //       firstClick=false;
+    //     }
+    //     SensorVals2=ChassisUpdate();
+    //     if(fabs(SensorVals2.Avg) <= fabs(4.5))//Tune the number in fabs()
+    //     {
+    //       Running=true;
+    //       SensorVals2=ChassisUpdate();
+    //       //std::cout << SensorVals.Avg << " " << dist << std::endl;    
+      
+    //     Move(100,100);
+    //     }
+    //     else{
+    //       Running=false;
+    //       Move(0,0);
+    //     firstClick=true;}
+       
+    // }
+
+    // else{
+    RV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
+    LV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
+    Move(LV,RV); 
+    // }
+    LastStat=Controller1.ButtonDown.pressing();
   }
 
 return 0;
 }
 int V;
-
-
 
 int ATask(void)
 {
@@ -469,7 +505,7 @@ int ButtonPressingY,YTaskActiv;
 int ButtonPressingA,ATaskActiv;
 int ButtonPressingB,BTaskActiv;
 int ButtonPressingUp,UpTaskActiv;
-int ButtonPressingDown, DownTaskActiv;
+
 int ButtonPressingLeft, LeftTaskActiv;
 int ButtonPressingRight, RightTaskActiv;
 
@@ -580,23 +616,6 @@ int PTask(void)
       Pistake.set(false);
     }
 
-    // bool driving = true;
-    // DRIVES BACKWARDS ---------------------------------------------------------------
-    // if(DownTaskActiv==0&&Controller1.ButtonDown.pressing()&&ButtonPressingDown==0)
-    // {
-    //   ButtonPressingDown=1;
-    //   driving = true;
-    // }
-
-    // else if(!Controller1.ButtonDown.pressing() && ButtonPressingDown==1) 
-    // {
-    //   driving = false;
-    //   PIDDataSet TestPara={1.5,0.1,0.15};
-    //   MoveEncoderPID(TestPara,100,10,0.2,0,false);
-    //   ButtonPressingDown=0;
-    //   driving = true;
-    // }
-
   }
 }
 
@@ -702,7 +721,18 @@ void usercontrol(void) {
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
     
+    
+    // if (Csort == true) {
+    //   task Itask=task(ITask);
+    // }
+    // else {
+    //   task Atask=task(ATask);
+    // }
+    // task Ptask=task(PTask);
+    // task Btask=task(BTask);
+    
     task Dtask=task(DriveTask);
+
     if (Csort == true) {
       task Itask=task(ITask);
     }
@@ -711,7 +741,8 @@ void usercontrol(void) {
     }
     task Ptask=task(PTask);
     task Btask=task(BTask);
-
+    
+    // task Dtask=task(DriveTask);
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.

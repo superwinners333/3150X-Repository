@@ -13,9 +13,9 @@ void red_positive() // original
     // wait(1.7,sec);
 
     TurnMaxTimePID(TestPara, 36, 0.4, true);
-    RunArms(100);
+    RunArms(90);
     MoveEncoderPID(TestPara,-50,1.1,0.2,36,true);
-    wait(175,msec);
+    wait(230,msec);
     RunArms(0);
     TurnMaxTimePID(TestPara, 25, 1, true);
 
@@ -23,22 +23,22 @@ void red_positive() // original
     RunArms(-100);
     MoveEncoderPID(TestPara,30,10,0.2,16,true); // slows down and turns
     Clamp.set(true);
+    RunRoller(0);
     wait(80,msec);
-    RunArms(0);
     
     TurnMaxTimePID(TestPara, 50, 0.8, false);
     Pistake.set(true);
     RunRoller(100);
-    MoveEncoderPID(TestPara,-100,17,0.3,50,false); // grabs first ring
+    MoveEncoderPID(TestPara,-100,16,0.3,50,false); // grabs first ring
     Pistake.set(false);
     wait(220,msec);
     MoveEncoderPID(TestPara,90,16.5,0.8,50,false); // backs away
     wait(20,msec);
     TurnMaxTimePID(TestPara, -99, 0.3, false); // turns to second ring
     MoveEncoderPID(TestPara,-100,26,0.5,-99,false); // grabs second ring
-    TurnMaxTimePID(TestPara, -20, 0.4, false); // turns towards corner
-    MoveEncoderPID(TestPara,-100,33,0.4,-23,false); // runs into corner
-    MoveTimePID(TestPara,50,1.2,0.4,-23,false);  // runs into corner
+    TurnMaxTimePID(TestPara, -24, 0.4, false); // turns towards corner
+    MoveEncoderPID(TestPara,-100,33,0.4,-24,false); // runs into corner
+    MoveTimePID(TestPara,50,1.2,0.4,-24,false);  // runs into corner
    
     wait(320,msec);
     MoveEncoderPID(TestPara,30,5,0.6,-20,true); // backs up to activate pistake
@@ -72,9 +72,13 @@ void red_positive() // original
     wait(50,msec);
     Clamp.set(false);
     wait(50,msec);
-    TurnMaxTimePID(TestPara, 135, 0.5, false); // turns to ladder
-    MoveEncoderPID(TestPara,-100,47,0.2,135,false); // drives to ladder
+    MoveEncoderPID(TestPara,-100,5,0.2,145,false); // drives forward away from corner
+    wait(50,msec);
+
+    TurnMaxTimePID(TestPara, 120, 0.5, false); // turns to ladder
+    MoveEncoderPID(TestPara,-100,39,0.2,120,false); // drives to ladder
     RunArms(100);
+    RunRoller(0);
     wait(500,msec);
     RunArms(0);
 }

@@ -11,9 +11,9 @@ void blue_positive()
     PIDDataSet TestPara={1.5,0.1,0.15};
 
     TurnMaxTimePID(TestPara, -40, 0.5, true); // 37
-    RunArms(100);
+    RunArms(90);
     MoveEncoderPID(TestPara,-50,1.2,0.2,-40,true);
-    wait(175,msec);
+    wait(200,msec);
     RunArms(0);
     TurnMaxTimePID(TestPara, -25, 1, true);
     wait(10,msec);
@@ -21,9 +21,9 @@ void blue_positive()
     MoveEncoderPID(TestPara,80,28,0.2,-25,true); // grabs mogo
     RunArms(-100);
     MoveEncoderPID(TestPara,30,10,0.2,-16,true);
+    RunArms(0);
     Clamp.set(true);
     wait(80,msec);
-    RunArms(0);
     
     TurnMaxTimePID(TestPara, -50, 0.8, false);
     RunRoller(100);
@@ -40,10 +40,10 @@ void blue_positive()
     MoveTimePID(TestPara,50,1.2,0.4,23,false);  // runs into corner
    
     wait(200,msec);
-    MoveEncoderPID(TestPara,40,2.9,0.3,23,false); // backs up to activate pistake
+    MoveEncoderPID(TestPara,40,3.7,0.3,23,false); // backs up to activate pistake
     Pistake.set(true);
     wait(150,msec);
-    MoveEncoderPID(TestPara,-100,3.6,0.2,23,false); // runs into corner again
+    MoveEncoderPID(TestPara,-80,3.8,0.2,23,false); // runs into corner again
     wait(150,msec);
     Pistake.set(false);
     wait(150,msec);
@@ -61,9 +61,24 @@ void blue_positive()
     wait(20,msec);
     RightDoinker.set(false);
     wait(50,msec);
-    TurnMaxTimePID(TestPara, -135, 0.5, false); 
-    MoveEncoderPID(TestPara,-100,20,0.2,-135,false); // drives to ladder
+
+    TurnMaxTimePID(TestPara, -150, 0.4, false); // turns so mogo faces corner
+
+    RunRoller(0);
+    wait(50,msec);
+    MoveTimePID(TestPara, -100, 0.8, 0.2, -150, false); // backs up into corner to release mogo
+    wait(50,msec);
+    Clamp.set(false);
+    wait(50,msec);
+    MoveEncoderPID(TestPara,-100,5,0.2,-145,false); // drives forward away from corner
+
+    TurnMaxTimePID(TestPara, -130, 0.5, false); 
+    MoveEncoderPID(TestPara,-100,39,0.2,-130,false); // drives to ladder
+    wait(50,msec);
     RunArms(100);
     wait(700,msec);
     RunArms(0);
+
+    // RunRoller(0);
+    // MoveEncoderPID(TestPara,-100,12,0.2,-145,false);
 }

@@ -40,7 +40,7 @@ void red_corner_clear()
     MoveTimePID(TestPara,40,1.8,0.2,-20,false);  // slows down to not break ring stack
    
     wait(320,msec);
-    MoveEncoderPID(TestPara,30,5,0.6,-20,true); // backs up to activate pistake
+    MoveEncoderPID(TestPara,30,4.7,0.6,-20,true); // backs up to activate pistake
     wait(250,msec);
     Pistake.set(true);
     wait(200,msec);
